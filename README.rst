@@ -1,6 +1,6 @@
 F5 Cloud Services – API Lab
 ===========================
-Winter 2020
+Spring 2020
 
 .. contents:: Table of Contents
 
@@ -350,10 +350,10 @@ More detailed information on this API request can be found `here <http://bit.ly/
 
 `*` **NOTE**: If you did not create a limited user and you’re comfortable using the main Privileged User for the entirety of the lab, you can copy the value of “ACCESS_TOKEN” into the “LIMITED_ACCESS_TOKEN”.
 
-8. Get the Zone Name for your LAB
+8. Get the Zone Name for your Lab
 *********************************
 
-This LAB contains an API that provides utility functions including DNS management, geo proximity load balance testing, and limited (targeted) attacks on specific instances. The first step to identify your individual LAB is to retrieve the Zone Name for your lab with the following API Call:
+This Lab contains an API that provides utility functions including DNS management, geo proximity load balance testing, and limited (targeted) attacks on specific instances. The first step to identify your individual lab is to retrieve the Zone Name for your lab with the following API Call:
 
 
 **Get DNS Zone (lab)**
@@ -422,7 +422,7 @@ More detailed information on this API request can be found `here <http://bit.ly/
 
 `c)` Subscribe to Catalogs using the F5 Cloud Services portal
 
-You can subscribe to any of these cloud service catalogs by using the portal or API (assuming you already provided payment / credit card info to enable certain catalogs).
+You can subscribe to any of these cloud service catalogs by using the portal or API (assuming you already provided payment / credit card info to enable certain catalogs). There may be free tier and trials that you could take advantage of, see the available options next to each catalog!
 
 Portal:
 
@@ -432,15 +432,15 @@ If you haven’t already, you will need to add your payment information or subsc
 
 .. figure:: _figures/33.jpg
 
-Add payment card to pay by credit card:
+Add payment card to pay by credit card...
 
 .. figure:: _figures/200.jpg
 
-Or initiate the subscription from AWS Marketplace to subscribe through it:
+...or initiate the subscription from AWS Marketplace:
 
 .. figure:: _figures/202.jpg
 
-As for Essential App Protect, you can select its free trial which supposes you have already set up payment method before:
+At the time of writing Essential App Protect service provides a free trial, which you can use for the purposes of this lab:
 
 .. figure:: _figures/201.png
 
