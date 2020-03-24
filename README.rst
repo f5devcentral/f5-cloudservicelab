@@ -293,7 +293,7 @@ To create a limited user role, you can either (a) use the F5 Cloud Services port
 
    More detailed information on this API request can be found `here <http://bit.ly/2tIWwe2>`_.
 
-   `2.` **Invite Limited User** request will generate an invitation using the API to the alternate (limited user) email. You will need to add the alternate email in the Environment variable “LIMITED_USER_EMAIL” before sending the request.
+   `2.` **Invite Limited User (optional)** request will generate an invitation using the API to the alternate (limited user) email. You will need to add the alternate email in the Environment variable “LIMITED_USER_EMAIL” before sending the request.
 
    .. figure:: _figures/19.jpg
       :height: 115px
@@ -334,7 +334,7 @@ To create a limited user role, you can either (a) use the F5 Cloud Services port
 
 At this point, you should either have a limited user created, or decided to re-use your main user token as a limited user token*. If you created limited user, let’s use the environment variables you’ve added for the limited user to log in & retrieve “LIMITED_ACCESS_TOKEN”.
 
-Select the **Limited User Login** request and click **Send**.
+Select the **Limited User Login (optional)** request and click **Send**.
 
 .. figure:: _figures/23.jpg
 
@@ -428,9 +428,21 @@ Portal:
 
 .. figure:: _figures/32.jpg
 
-If you haven’t already, you will need to add your payment information:
+If you haven’t already, you will need to add your payment information or subscribe through AWS Marketplace:
 
 .. figure:: _figures/33.jpg
+
+Add payment card to pay by credit card:
+
+.. figure:: _figures/200.jpg
+
+Or initiate the subscription from AWS Marketplace to subscribe through it:
+
+.. figure:: _figures/202.jpg
+
+As for Essential App Protect, you can select its free trial which supposes you have already set up payment method before:
+
+.. figure:: _figures/201.png
 
 `d)` Subscribe to Catalog using Postman
 
@@ -488,7 +500,7 @@ If you haven’t already, you will need to add your payment information:
 
 
 F5 DNS Cloud Service
-###########
+###################
 
 
 1. List DNS Subscriptions
@@ -554,7 +566,7 @@ As a result, you will get the zone file describing your DNS zone and containing 
 .. figure:: _figures/46.jpg
 
 F5 DNS Load Balancer Cloud Service
-##################
+##################################
 
 1. Create DNS Load Balancer Subscription
 ****************************************
@@ -659,12 +671,12 @@ Here’s what you should see in the response:
 .. figure:: _figures/61.jpg
 
 F5 Essential App Protect Service
-######################
+###############################
 
 1. Create EAP Subscription
 **************************
 
-Now, let's protect the NA2 endpoint with an instance of F5 Cloud Services Essential App Protect. We will start with creating an EAP subscription and retrieving the "subscription_id" for the newly-created instance.
+Now, let's protect the NA2 endpoint with an instance of F5 Essential App Protect service. We will start with creating a subscription and retrieving the "subscription_id" for the newly-created instance.
 
 Select the **Create EAP Subscription** request and click **Send** to create a new service instance of Essential App Protect. Note that this request passes the “account_id” and “catalog_id” values retrieved from the previous steps.
 
@@ -702,7 +714,7 @@ More detailed information on this API request can be found `here <http://bit.ly/
 3. Get EAP Subscription
 ***********************
 
-In order to direct your site’s traffic through Essential App Protect service you need to get “CNAMEValue” using “subscription_id” from the previous steps. To do that, send the **Get EAP Subscription** request.
+In order to direct your site’s traffic through Essential App Protect service you need to get “CNAMEValue” using “subscription_id” from the previous steps. The CNAME value will then be used to update the DNS record of the app you're protecting, which will then direct traffic to the instance of Essential App Protect that you created. To get "CNAMEValue", send the **Get EAP Subscription** request.
 
 .. figure:: _figures/97.jpg
 
@@ -718,12 +730,10 @@ More detailed information on this API request can be found `here <http://bit.ly/
 
 ** THIS LAST STEP MAY TAKE SOME TIME TO COMPLETE **
 
-.. figure:: _figures/67.jpg
-
 4. Update EAP CNAME (lab)
 ************************
 
-Now let’s update our DNS settings with the new CNAME. It can be easily done by sending the **Update EAP CNAME (lab)** request. This will make all requests to the main domain go through Essential App Protect first. You can inspect the JSON body for the details of the current configuration. Note, that we have chosen to start with the "Monitor" mode first, which we will subsequently update to "Block".
+Now let’s update our DNS settings with the new CNAME. It can be easily done by sending the **Update EAP CNAME (lab)** request. This will direct all of the requests through Essential App Protect first. You can inspect the JSON body for the details of the current configuration. Note, that we have chosen to start with the "Monitor" mode first, which we will subsequently update to "Block".
 
 .. figure:: _figures/68.jpg
 
@@ -734,7 +744,7 @@ You will see “ok” status in the body if it is executed successfully.
 5. Check the Site
 *****************
 
-Now let’s see how it looks like in a browser. Copy “CNAMEValue” from the **Get EAP Subscription** request and paste it into your browser.
+Now let’s see how our site looks like in a browser. Copy “CNAMEValue” from the **Get EAP Subscription** request and paste it into your browser.
 
 .. figure:: _figures/70.jpg
 
@@ -743,7 +753,7 @@ You will see the NA2 instances of the Auction website and all of the requests wi
 .. figure:: _figures/71.jpg
 
 6. Start Essential App Protect Attack (lab)
-*************************
+*******************************************
 
 Let’s now return to Postman and simulate the attacks by sending the **Start EAP Attack (lab)** request.
 
@@ -763,7 +773,7 @@ Now let’s see the map of our attacks on the F5 Cloud Services portal. You need
 For now, all attacks are not blocked. We will block them sending the **Update Monitor to Block** request in one of the following steps.
 
 8. Get Essential App Protect Events Stream
-************************
+********************************************
 
 Now return to Postman to get more detailed information on the simulated attacks. Send the **Get EAP Events Stream** request which uses “subscription_id” and “service_instance_id”.
 
@@ -795,7 +805,7 @@ In this section you can use Postman to initiate a few types of attacks using the
 
 This attack inserts a SQL query via the input data field in the web application. Such attacks could potentially read sensitive data, modify and destroy it. More detailed information can be found `here <http://bit.ly/2RfmXkw>`_.
 
-You can try simulating this attack from your local computer by selecting the **Attack: SQL Injection** request and clicking **Send**.
+You can simulate this attack from your local computer by selecting the **Attack: SQL Injection** request and clicking **Send**.
 
 .. figure:: _figures/99.jpg
 
@@ -807,7 +817,7 @@ The result will be shown in the Essential App Protect "VIEW EVENTS" section of t
 
 This attack combines valid URL path segments with invalid input to guess or brute-force download of sensitive files or data. More detailed information can be found `here <http://bit.ly/30NrAFF>`_.
 
-You can try simulating this attack from your local computer by selecting the **Attack: Illegal Filetype** request and clicking **Send**.
+You can simulate this attack from your local computer by selecting the **Attack: Illegal Filetype** request and clicking **Send**.
 
 .. figure:: _figures/101.jpg
 
@@ -819,7 +829,7 @@ The result will be shown in the Essential App Protect "VIEW EVENTS" section of t
 
 These types of attacks are the category that F5 Labs tracks as coordinated campaigns that exploit known vulnerabilities. This particular attack simulates using a known Tomcat backdoor vulnerability. The complete list of such threats can be found `here <http://bit.ly/36bPmfG>`_.
 
-You can try simulating this attack from your local computer by selecting the **Attack: Threat Campaign** request and clicking **Send**.
+You can simulate this attack from your local computer by selecting the **Attack: Threat Campaign** request and clicking **Send**.
 
 .. figure:: _figures/103.jpg
 
@@ -871,10 +881,41 @@ You will see “retired” status in the response body which means that it’s n
 
 More detailed information on these API requests can be found `here <http://bit.ly/2Gf166I>`_.
 
+2. Clear Tokens from the Lab Service API
+************************
+
+`a)` If you created a limited user role, we recommend that you clear your **LIMITED_ACCESS_TOKEN** from the Lab Service API for security purposes.
+
+In order to do that, send the **Limited User Logout** request, which uses your **LIMITED_ACCESS_TOKEN**:
+
+.. figure:: _figures/108.jpg
+
+You will get the following response with the status showing "200 OK":
+
+.. figure:: _figures/109.jpg
+
+Your **LIMITED_ACCESS_TOKEN** will be considered invalid:
+
+.. figure:: _figures/110.jpg
+
+`b)` If you didn’t create a limited user role and used your main user credentials instead (“ACCESS_TOKEN” AS “LIMITED_ACCESS_TOKEN”) in steps 6 and 7 of **Core API Calls** section, we recommend that you clear your tokens from the Lab Service API for security purposes.
+
+In order to do that, send the **Logout** request, which uses your **ACCESS_TOKEN**:
+
+.. figure:: _figures/108.png
+
+You will get the following response with the status showing "200 OK":
+
+.. figure:: _figures/109.jpg
+
+Your **ACCESS_TOKEN** will be considered invalid:
+
+.. figure:: _figures/110.png
+
 Final Notes
 ###########
 
-By this point you have done the following:
+By this point you would have done the following:
 
 * Configured Postman account used for sending API requests to F5 Cloud Services and Lab Service
 
