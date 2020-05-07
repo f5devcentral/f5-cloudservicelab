@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "60928be9-6539-474d-ba8c-8561554a6bc2",
+		"_postman_id": "dbf5e660-5552-48f9-9468-21e7bdcc0ab0",
 		"name": "F5 Cloud Services LAB",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,7 +14,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "5f69fafb-8adb-4048-a793-e9501aa7e0f1",
+								"id": "dcf2571e-ae02-4f0b-bdaa-34ec7d8e0d00",
 								"exec": [
 									"pm.test(\"Set token variable\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -65,7 +65,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "16513967-a6da-43c3-8189-0f0a8c560199",
+								"id": "1f3b7ed6-8920-45d9-b656-4b218a65a0df",
 								"exec": [
 									"pm.test(\"Set account_id and user_id variables\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -108,7 +108,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f3a46ee7-7b11-4c3f-89a0-7cdd4ca5a2c1",
+								"id": "b07a23b8-15ed-4f8d-a46b-f1c2156cf74b",
 								"exec": [
 									"pm.test(\"Set Roles Environemnt\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -153,7 +153,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0cc231c9-8d23-473b-a56a-f224ec37ccb8",
+								"id": "0e4b047e-8156-4cd4-abf0-96316338c55f",
 								"exec": [
 									""
 								],
@@ -201,7 +201,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "5f69fafb-8adb-4048-a793-e9501aa7e0f1",
+								"id": "adb04ab3-dc11-438b-9888-751f60a3554a",
 								"exec": [
 									"pm.test(\"Set token variable\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -251,7 +251,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0cc231c9-8d23-473b-a56a-f224ec37ccb8",
+								"id": "391bff3a-9fa2-4bf5-9c79-63ad6433cf09",
 								"exec": [
 									"pm.test(\"Get User's DNS Zone Name\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -297,7 +297,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ba388a57-48a4-4052-9def-45bf9b63b689",
+								"id": "c24cf5b1-f4e7-4393-b5fb-528308e05193",
 								"exec": [
 									"pm.test(\"Switch account\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -344,7 +344,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "e0076139-ff8f-40dc-ae2d-a915d0cb5cdb",
+								"id": "a3d84781-65a0-4f59-8c01-5b728470840e",
 								"exec": [
 									"pm.test(\"Set Catalog variables\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -439,7 +439,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b94ca704-83de-44bd-8d07-01ed42430ad4",
+								"id": "dc8031df-5829-40f6-970c-53a5ed686d3c",
 								"exec": [
 									"pm.test(\"Find previously created subscriptions\", function() {",
 									"    const jsonData = pm.response.json();",
@@ -511,7 +511,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b94ca704-83de-44bd-8d07-01ed42430ad4",
+								"id": "9c478c81-cb35-4bcd-832b-3fcca5f95cef",
 								"exec": [
 									""
 								],
@@ -569,7 +569,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2be2c130-9eb2-4ce8-a50a-753f57c5af4e",
+								"id": "e3d41c6c-dd43-4fb8-b804-93bd38451bdb",
 								"exec": [
 									"pm.test(\"Set DNS subscription id variable\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -659,7 +659,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b94ca704-83de-44bd-8d07-01ed42430ad4",
+								"id": "e63466dc-7102-4408-9201-0550d900e3ad",
 								"exec": [
 									""
 								],
@@ -711,7 +711,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2be2c130-9eb2-4ce8-a50a-753f57c5af4e",
+								"id": "1f913062-1335-4dd7-821d-bb31d59d519b",
 								"exec": [
 									"pm.test(\"Set GSLB subscription id variable\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -986,7 +986,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "5f64d5b3-d495-483c-afb4-7254931b00c0",
+								"id": "5893f8fc-193e-43f2-a1ba-60e7a21766b5",
 								"exec": [
 									"pm.test(\"Set EAP subscription id variable\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -1076,7 +1076,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b94ca704-83de-44bd-8d07-01ed42430ad4",
+								"id": "0cc3ad5a-5bc4-441f-806c-b66372548aa7",
 								"exec": [
 									"pm.test(\"Set EAP variables\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -1232,7 +1232,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "5f64d5b3-d495-483c-afb4-7254931b00c0",
+								"id": "91f4afe4-6130-4945-bbe7-429ab0fc92a5",
 								"exec": [
 									""
 								],
@@ -1380,12 +1380,37 @@
 			"name": "Clean Up",
 			"item": [
 				{
+					"name": "Retire DNS Zone (lab)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{LIMITED_ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{DNS_WEB_ADMIN}}/zone/retire",
+							"protocol": "http",
+							"host": [
+								"{{DNS_WEB_ADMIN}}"
+							],
+							"path": [
+								"zone",
+								"retire"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Retire DNS Subscription",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "b94ca704-83de-44bd-8d07-01ed42430ad4",
+								"id": "d58cafda-07f6-4353-92d7-58bc20a6d3c2",
 								"exec": [
 									""
 								],
@@ -1435,7 +1460,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b94ca704-83de-44bd-8d07-01ed42430ad4",
+								"id": "5dff1f09-113b-473a-8689-40627322fd51",
 								"exec": [
 									""
 								],
@@ -1485,7 +1510,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b94ca704-83de-44bd-8d07-01ed42430ad4",
+								"id": "bc3251ef-ff37-4dd2-9b1e-5f15ca1f110d",
 								"exec": [
 									""
 								],
@@ -1535,7 +1560,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0a4206ab-4905-4c26-afb8-8c829db509dc",
+								"id": "75b0eac2-0d59-459a-9213-51a5cffe57e0",
 								"exec": [
 									"pm.test(\"Reset token variable\", function() {",
 									"    pm.environment.set(\"LIMITED_ACCESS_TOKEN\", \"\");",
@@ -1586,7 +1611,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0a4206ab-4905-4c26-afb8-8c829db509dc",
+								"id": "e00c627f-f8d3-4537-bff2-640e3dc649d8",
 								"exec": [
 									"pm.test(\"Reset token variable\", function() {",
 									"    pm.environment.set(\"ACCESS_TOKEN\", \"\");",
