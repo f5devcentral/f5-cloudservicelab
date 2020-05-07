@@ -1380,31 +1380,6 @@
 			"name": "Clean Up",
 			"item": [
 				{
-					"name": "Retire DNS Zone (lab)",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{LIMITED_ACCESS_TOKEN}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://{{DNS_WEB_ADMIN}}/zone/retire",
-							"protocol": "http",
-							"host": [
-								"{{DNS_WEB_ADMIN}}"
-							],
-							"path": [
-								"zone",
-								"retire"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Retire DNS Subscription",
 					"event": [
 						{
@@ -1548,6 +1523,31 @@
 								"svc-subscription",
 								"subscriptions",
 								"{{WAF_SUBSCRIPTION_ID}}",
+								"retire"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retire DNS Zone (lab)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{LIMITED_ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{DNS_WEB_ADMIN}}/zone/retire",
+							"protocol": "http",
+							"host": [
+								"{{DNS_WEB_ADMIN}}"
+							],
+							"path": [
+								"zone",
 								"retire"
 							]
 						}
