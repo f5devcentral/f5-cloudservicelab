@@ -75,7 +75,7 @@ The following are the demo application instances:
    "EU", "Europe", "AWS – Europe (Frankfurt)", "3.122.191.227", "http://eu-auction.cloudservicesdemo.net/"
    "NA1", "North America", "AWS - US East (N. Virginia)", "34.229.48.248", "http://na1-auction.cloudservicesdemo.net/"
    "NA2", "North America", "AWS – US East (N. Virginia)", "18.232.64.254", "http://na2-auction.cloudservicesdemo.net/"
-   "NA3", "North America", "Azure – US East", "52.226.147.184", "http://na3-auction.cloudservicesdemo.net/"
+   "NA3", "North America", "Azure – US East", "13.82.106.211", "http://na3-auction.cloudservicesdemo.net/"
 
 
 
@@ -884,7 +884,11 @@ More detailed information on these API requests can be found `here <http://bit.l
 2. Clear Tokens from the Lab Service API
 ************************
 
-`a)` If you created a limited user role, we recommend that you clear your **LIMITED_ACCESS_TOKEN** from the Lab Service API for security purposes.
+`a)` Send the **Retire DNS Zone** to remove or reset zone file. You will get response with status code "200 OK".
+
+.. figure:: _figures/111.jpg
+
+`b)` If you created a limited user role, we recommend that you clear your **LIMITED_ACCESS_TOKEN** from the Lab Service API for security purposes.
 
 In order to do that, send the **Limited User Logout** request, which uses your **LIMITED_ACCESS_TOKEN**:
 
@@ -898,7 +902,7 @@ Your **LIMITED_ACCESS_TOKEN** will be considered invalid:
 
 .. figure:: _figures/110.jpg
 
-`b)` If you didn’t create a limited user role and used your main user credentials instead (“ACCESS_TOKEN” AS “LIMITED_ACCESS_TOKEN”) in steps 6 and 7 of **Core API Calls** section, we recommend that you clear your tokens from the Lab Service API for security purposes.
+`c)` If you didn’t create a limited user role and used your main user credentials instead (“ACCESS_TOKEN” AS “LIMITED_ACCESS_TOKEN”) in steps 6 and 7 of **Core API Calls** section, we recommend that you clear your tokens from the Lab Service API for security purposes.
 
 In order to do that, send the **Logout** request, which uses your **ACCESS_TOKEN**:
 
