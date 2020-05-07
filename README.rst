@@ -75,7 +75,7 @@ The following are the demo application instances:
    "EU", "Europe", "AWS – Europe (Frankfurt)", "3.122.191.227", "http://eu-auction.cloudservicesdemo.net/"
    "NA1", "North America", "AWS - US East (N. Virginia)", "34.229.48.248", "http://na1-auction.cloudservicesdemo.net/"
    "NA2", "North America", "AWS – US East (N. Virginia)", "18.232.64.254", "http://na2-auction.cloudservicesdemo.net/"
-   "NA3", "North America", "Azure – US East", "52.226.147.184", "http://na3-auction.cloudservicesdemo.net/"
+   "NA3", "North America", "Azure – US East", "13.82.106.211", "http://na3-auction.cloudservicesdemo.net/"
 
 
 
