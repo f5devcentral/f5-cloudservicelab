@@ -217,7 +217,7 @@ The response returns the following detail, including your own organization accou
 
 .. figure:: _figures/113.jpg
 
-More information on this API request can be found `here: <https://portal.cloudservices.f5.com/docs#operation/CreateAccount>`_. 
+More information on this API request can be found `here <https://portal.cloudservices.f5.com/docs#operation/CreateAccount>`_.
 
 At this point you should be a full user with an "Owned Account" with a primary organization account id, which can confirm in the `F5 Cloud Services Portal <https://portal.cloudservices.f5.com/>`_ in the drop-down under your user name (top right) you should see "Accounts you own:" and the Organization Account you created with **"Owner"** defined.
 
