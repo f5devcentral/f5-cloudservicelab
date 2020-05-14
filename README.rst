@@ -206,6 +206,21 @@ These tokens are then stored for subsequent calls using a function inside Postma
         :alt: alternate text
         :align: center
 
+
+**IMPORTANT NOTE**: If you originally signed up for F5 Cloud Services through a Limited User invitation (such as an email invite from another lab or from a different account owner) it is possible that you and have not yet completed a full registration. You can usually quickly tell if in the `F5 Cloud Services Portal <https://portal.cloudservices.f5.com/>`_ you do now see any "Accounts you own:" and only see "Accounts you've been granted access to" as a **"Limited User"**. 
+
+In a scenario before you proceed with the lab you will need to run the following **Set User Info** API call, after updating the Body of the request with your own organization & address information:  
+
+.. figure:: _figures/112.jpg
+
+The response returns the following detail, including your own organization account ID (id):
+
+.. figure:: _figures/113.jpg
+
+More information on this API request can be found `here <https://portal.cloudservices.f5.com/docs#operation/CreateAccount>`_.
+
+At this point you should be a full user with an "Owned Account" with a primary organization account id, which can confirm in the `F5 Cloud Services Portal <https://portal.cloudservices.f5.com/>`_ in the drop-down under your user name (top right) you should see "Accounts you own:" and the Organization Account you created with **"Owner"** defined.
+
 `c)` Retrieve User ID & Account ID
 
 Select the **Get Current User** request and click **Send** to retrieve User ID and Account ID to be used in the further requests.
