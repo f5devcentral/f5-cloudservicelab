@@ -211,11 +211,11 @@ These tokens are then stored for subsequent calls using a function inside Postma
 
 In a scenario before you proceed with the lab you will need to run the following **Set User Info** API call, after updating the Body of the request with your own organization & address information:  
 
--- body figure here --
+.. figure:: _figures/112.jpg
 
 The response returns the following detail, including your own organization account ID (id):
 
--- response figure here --
+.. figure:: _figures/113.jpg
 
 More information on this API request can be found `here: <https://portal.cloudservices.f5.com/docs#operation/CreateAccount>`_. 
 

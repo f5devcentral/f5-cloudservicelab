@@ -60,6 +60,57 @@
 					"response": []
 				},
 				{
+					"name": "Set User Info (optional)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5eb8c10c-1603-4e4e-b69d-57fb07d20a95",
+								"exec": [
+									"pm.test(\"Set account_id variable\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.environment.set(\"ACCOUNT_ID\", jsonData.id);",
+									"})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{ACCESS_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Demo Account\",\n\t\"address\": {\n\t\t\"street_1\": \"801 5th Ave\",\n\t\t\"city\": \"Seattle\",\n\t\t\"state\": \"WA\",\n\t\t\"postal_code\": \"98104\",\n    \t\"country\": \"US\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{HOSTNAME}}/{{API_VERSION}}/svc-account/accounts",
+							"protocol": "https",
+							"host": [
+								"{{HOSTNAME}}"
+							],
+							"path": [
+								"{{API_VERSION}}",
+								"svc-account",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get Current User",
 					"event": [
 						{
@@ -67,9 +118,11 @@
 							"script": {
 								"id": "1f3b7ed6-8920-45d9-b656-4b218a65a0df",
 								"exec": [
-									"pm.test(\"Set account_id and user_id variables\", function() {",
+									"pm.test(\"Set account_id and user_id variables\", function () {",
 									"    var jsonData = pm.response.json();",
-									"    pm.environment.set(\"ACCOUNT_ID\", jsonData.primary_account_id);",
+									"    if(!pm.environment.get(\"ACCOUNT_ID\")) {",
+									"        pm.environment.set(\"ACCOUNT_ID\", jsonData.primary_account_id);",
+									"    }",
 									"    pm.environment.set(\"USER_ID\", jsonData.id);",
 									"})",
 									""
