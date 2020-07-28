@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d3f00714-9957-4ac7-9849-77c9f34b11f0",
+		"_postman_id": "4afd6257-7adf-40a7-8a56-de1fc2f780a0",
 		"name": "F5 Cloud Services LAB",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,7 +14,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "9e145fb4-990f-4d86-9fd7-c9a3e975789c",
+								"id": "8887d552-298c-4c58-b9a8-247fe5ae62d2",
 								"exec": [
 									"pm.test(\"Set token variable\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -65,7 +65,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c958f9ff-ff0e-49f1-9b0b-03adf12edd95",
+								"id": "f94b5a0e-cff2-4e73-8f56-2881d635e26a",
 								"exec": [
 									"pm.test(\"Set account_id variable\", function () {",
 									"    var jsonData = pm.response.json();",
@@ -116,7 +116,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "be495b24-6231-457b-b277-2fbf524d6a45",
+								"id": "d480539c-c298-4bdf-b0c8-cb18e6e11f24",
 								"exec": [
 									"pm.test(\"Set account_id and user_id variables\", function () {",
 									"    var jsonData = pm.response.json();",
@@ -161,7 +161,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "dfed3f9a-13cc-4fb4-9220-dfc0b728ff35",
+								"id": "c70583a7-d323-4e92-8937-6070e4d3f4b5",
 								"exec": [
 									"pm.test(\"Set Roles Environemnt\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -206,7 +206,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "d336da3c-90e2-4ad2-a403-16516ea56a11",
+								"id": "85e624d2-83c2-4b8a-a69e-0d1f1326ac6a",
 								"exec": [
 									""
 								],
@@ -254,7 +254,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "d87fac08-0404-4a3d-8e17-35c1e612fd1d",
+								"id": "178432e1-0473-4684-bf17-fbdeedb4ec9c",
 								"exec": [
 									"pm.test(\"Set token variable\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -304,7 +304,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2eb53750-bcf5-4d13-a650-c0ecda55562b",
+								"id": "93d98398-c86b-4524-b2d4-82ae57f0d49a",
 								"exec": [
 									"pm.test(\"Get User's DNS Zone Name\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -329,6 +329,11 @@
 								"key": "Authorization",
 								"type": "text",
 								"value": "Bearer {{LIMITED_ACCESS_TOKEN}}"
+							},
+							{
+								"key": "Labid",
+								"value": "cslab",
+								"type": "text"
 							}
 						],
 						"url": {
@@ -350,7 +355,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "5d214116-af5a-4ba8-bc4d-993ff463b58b",
+								"id": "683a7de0-09c3-44c2-aeb0-079fcaaea90f",
 								"exec": [
 									"pm.test(\"Switch account\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -397,7 +402,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "78c9c49d-5495-46b7-86cc-f690b854f0d6",
+								"id": "4ab7a358-74cd-430c-ae49-ce1d2f90b41c",
 								"exec": [
 									"pm.test(\"Set Catalog variables\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -492,7 +497,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ec01fd61-730d-45cf-a2a4-d9e49afc4434",
+								"id": "8e7a970d-61c6-4a67-9d6c-efbf28269fc9",
 								"exec": [
 									"pm.test(\"Find previously created subscriptions\", function() {",
 									"    const jsonData = pm.response.json();",
@@ -564,7 +569,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "7e2f4dc2-b086-4190-8a8a-13f2294e60f8",
+								"id": "20bf3410-fccd-49b4-9f2a-f307c3593c12",
 								"exec": [
 									""
 								],
@@ -622,7 +627,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "546ece7b-0926-4b9c-a275-3d6e16f2ea6a",
+								"id": "1abb7e66-0fe2-4b93-86dd-8e9003b4f70c",
 								"exec": [
 									"pm.test(\"Set DNS subscription id variable\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -712,7 +717,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b76ebf09-5db7-4fb3-8cad-7b08dc3e4733",
+								"id": "1ab00853-b5c9-4c5f-b57d-e731e0f63174",
 								"exec": [
 									""
 								],
@@ -764,7 +769,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c0be6217-634f-4d27-b2e0-bb16b1132963",
+								"id": "7315f1ca-f0aa-4e8d-9e7c-2571bfc88501",
 								"exec": [
 									"pm.test(\"Set GSLB subscription id variable\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -863,6 +868,11 @@
 								"key": "Authorization",
 								"value": "Bearer {{LIMITED_ACCESS_TOKEN}}",
 								"type": "text"
+							},
+							{
+								"key": "Labid",
+								"value": "cslab",
+								"type": "text"
 							}
 						],
 						"body": {
@@ -934,6 +944,11 @@
 							{
 								"key": "Authorization",
 								"value": "Bearer {{LIMITED_ACCESS_TOKEN}}",
+								"type": "text"
+							},
+							{
+								"key": "Labid",
+								"value": "cslab",
 								"type": "text"
 							}
 						],
@@ -1007,6 +1022,11 @@
 								"key": "Authorization",
 								"type": "text",
 								"value": "Bearer {{LIMITED_ACCESS_TOKEN}}"
+							},
+							{
+								"key": "Labid",
+								"value": "cslab",
+								"type": "text"
 							}
 						],
 						"body": {
@@ -1039,7 +1059,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "6cf128a2-73ca-43f8-8a76-b0607f6555d4",
+								"id": "e16ac58e-7ad3-4a46-8ea3-124397994992",
 								"exec": [
 									"pm.test(\"Set EAP subscription id variable\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -1132,7 +1152,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c128d260-0edf-4a14-b96d-37ef2a4affca",
+								"id": "93475f1c-21b4-4a1c-963f-524b238b0b17",
 								"exec": [
 									"pm.test(\"Set EAP variables\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -1191,6 +1211,11 @@
 								"key": "Authorization",
 								"type": "text",
 								"value": "Bearer {{LIMITED_ACCESS_TOKEN}}"
+							},
+							{
+								"key": "Labid",
+								"value": "cslab",
+								"type": "text"
 							}
 						],
 						"body": {
@@ -1225,6 +1250,11 @@
 								"key": "Authorization",
 								"type": "text",
 								"value": "Bearer {{LIMITED_ACCESS_TOKEN}}"
+							},
+							{
+								"key": "Labid",
+								"value": "cslab",
+								"type": "text"
 							}
 						],
 						"body": {
@@ -1288,7 +1318,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "52461fd6-2b65-4d00-903a-1006ad822b2f",
+								"id": "f968f6e9-9c3e-4270-8056-03ed73295967",
 								"exec": [
 									""
 								],
@@ -1444,7 +1474,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2bed7ca4-bef2-44b1-9e7d-45f578368406",
+								"id": "ffd947bf-adbd-40a2-8242-57f348b0ef24",
 								"exec": [
 									""
 								],
@@ -1494,7 +1524,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "963465e7-fecd-462f-baaa-3db42f8ab32a",
+								"id": "cb36bc77-d7ab-4fc4-a354-2543d8c89d82",
 								"exec": [
 									""
 								],
@@ -1544,7 +1574,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "31ef83b3-abad-4d81-903a-1cd04c88e6cb",
+								"id": "9d88a7cc-2291-4109-bb0f-cea695beda98",
 								"exec": [
 									""
 								],
@@ -1597,6 +1627,11 @@
 								"key": "Authorization",
 								"value": "Bearer {{LIMITED_ACCESS_TOKEN}}",
 								"type": "text"
+							},
+							{
+								"key": "Labid",
+								"value": "cslab",
+								"type": "text"
 							}
 						],
 						"url": {
@@ -1619,7 +1654,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "5b2b3430-99d1-4ed0-b066-e5be9420744f",
+								"id": "8867dc80-ea01-4c82-9798-9eff8f0f071e",
 								"exec": [
 									"pm.test(\"Reset token variable\", function() {",
 									"    pm.environment.set(\"LIMITED_ACCESS_TOKEN\", \"\");",
@@ -1670,7 +1705,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1d390d5c-7690-4aa6-b265-66a3f2c38d3d",
+								"id": "3b899fab-6990-48f1-bc23-0a47ee471bfa",
 								"exec": [
 									"pm.test(\"Reset token variable\", function() {",
 									"    pm.environment.set(\"ACCESS_TOKEN\", \"\");",
