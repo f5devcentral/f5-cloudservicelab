@@ -1373,6 +1373,11 @@
 								"key": "User-Agent",
 								"value": "Mozilla/5.0 (Windows; U; Windows NT 5.1; pt-PT; rv:1.9.1.2) Gecko/20090729 Firefox/3.5.2 (.NET CLR 3.5.30729)",
 								"type": "text"
+							},
+							{
+								"key": "Connection",
+								"value": "close",
+								"type": "text"
 							}
 						],
 						"url": {
@@ -1410,6 +1415,11 @@
 								"key": "User-Agent",
 								"value": "Mozilla/5.0 (Windows; U; Windows NT 5.1; pt-PT; rv:1.9.1.2) Gecko/20090729 Firefox/3.5.2 (.NET CLR 3.5.30729)",
 								"type": "text"
+							},
+							{
+								"key": "Connection",
+								"value": "close",
+								"type": "text"
 							}
 						],
 						"url": {
@@ -1444,6 +1454,11 @@
 							{
 								"key": "Authorization",
 								"value": "Basic Og==",
+								"type": "text"
+							},
+							{
+								"key": "Connection",
+								"value": "close",
 								"type": "text"
 							}
 						],
