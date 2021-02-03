@@ -40,8 +40,6 @@ Prerequisites
 
 * Postman: download `here <http://bit.ly/309wSLl>`_
 
-* An alternate email address: for limited-user role
-
 **IMPORTANT NOTE**: If you originally signed up for F5 Cloud Services through a Limited User invitation (such as an email invite from another lab or from a different account owner), then it is possible that you haven't yet completed a full registration.
 
 You can quickly tell if you have a full account by looking at your account(s) in the `F5 Cloud Services Portal <https://portal.cloudservices.f5.com/>`_. If you do now see any "Accounts you own:" and only see "Accounts you've been granted access to" as a **"Limited User"**, then you will need to create a full account & update user info before you can proceed with this lab. You can do so in the step 5(c) below via the F5 Cloud Services API using the Postman request titled "Set User Info (optional)", the details of which are outlined below after the Login.
@@ -75,12 +73,11 @@ The following are the demo application instances:
 .. csv-table::
    :header: "Name", "Geography", "Cloud/Region", "IP", "URI"
 
-   "AU", "Australia", "AWS - Asia Pacific (Sydney)", "54.206.13.195", "http://au-auction.cloudservicesdemo.net/"
-   "EU", "Europe", "AWS – Europe (Frankfurt)", "3.122.191.227", "http://eu-auction.cloudservicesdemo.net/"
-   "NA1", "North America", "AWS - US East (N. Virginia)", "34.229.48.248", "http://na1-auction.cloudservicesdemo.net/"
-   "NA2", "North America", "AWS – US East (N. Virginia)", "18.232.64.254", "http://na2-auction.cloudservicesdemo.net/"
-   "NA3", "North America", "Azure – US East", "13.82.106.211", "http://na3-auction.cloudservicesdemo.net/"
-
+   "AU", "Australia", "AWS - Asia Pacific (Sydney)", "54.206.13.195", "http://au-auction.securelab.online/"
+   "EU", "Europe", "AWS – Europe (Frankfurt)", "3.122.191.227", "http://eu-auction.securelab.online/"
+   "NA1", "North America", "AWS - US East (N. Virginia)", "34.229.48.248", "http://na1-auction.securelab.online/"
+   "NA2", "North America", "AWS – US East (N. Virginia)", "18.232.64.254", "http://na2-auction.securelab.online/"
+   "NA3", "North America", "Azure – US East", "52.249.252.91", "http://na3-auction.securelab.online/"
 
 
 The following diagram is a simplified architecture of the Auction application:
@@ -94,9 +91,13 @@ The following diagram is a simplified architecture of the Auction application:
 
 `a)` Open Postman, create a Postman account if you don’t have one and choose to do so, and sign in.
 
-`b)` Import collection – **F5 Cloud Services LAB.postman_collection.json** and environment – **F5 Cloud Services LAB.postman_environment.json**.
+`b)` Use the button below to import collection and environment to the Postman or manually import it from the `Git repo for this lab <https://bit.ly/3jdhnf3>`_
 
-.. figure:: _figures/1.jpg
+.. image:: https://run.pstmn.io/button.svg
+   :target: https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/29616f564f0b7bae335c#?env%5BF5%20Cloud%20Services%20LAB%5D=W3sia2V5IjoiSE9TVE5BTUUiLCJ2YWx1ZSI6ImFwaS5jbG91ZHNlcnZpY2VzLmY1LmNvbSIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiQVBJX1ZFUlNJT04iLCJ2YWx1ZSI6InYxIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJETlNfV0VCX0FETUlOIiwidmFsdWUiOiI1NC4yMTEuMTIuMTczIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJBQ0NPVU5UX05BTUUiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiVVNFUl9FTUFJTCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJVU0VSX1BBU1NXT1JEIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfV0=
+
+
+.. figure:: _figures/1.png
 
 
 You will now see your collection (left side) with calls in several categories, as well as environment variables (top right).
@@ -150,21 +151,17 @@ You will later need to add the variables highlighted in bold.
   "5", "**USER_EMAIL**", "**Email of the main user in the F5 Cloud Services portal**"
   "6", "**USER_PASSWORD**", "**Password of the main user in the F5 Cloud Services portal**"
   "7", "ACCESS_TOKEN", "Token for authenticating API calls used by your main user account"
-  "8", "**LIMITED_USER_EMAIL**", "**Email of an alternate user with a “limited-user” role (for the lab)**"
-  "9", "**LIMITED_USER_PASSWORD**", "**Password of an alternate user with a “limited-user” role (for the lab)**"
-  "10", "LIMITED_ACCESS_TOKEN", "Token for API calls made by the lab (verify your subscriptions, etc)"
-  "11", "USER_ID", "ID of your main user"
-  "12", "ACCOUNT_ID", "ID of your main user’s primary account (where you will create instances)"
-  "13", "LIMITED_USER_ROLE_ID", "Unique identifier of a “limited-user” role type"
-  "14", "DNS_CATALOG_ID", "Unique ID for DNS service catalog"
-  "15", "WAF_CATALOG_ID", "Unique ID for the Essential App Protect service catalog"
-  "16", "GSLB_CATALOG_ID", "Unique ID for the DNS Load Balancer service catalog"
-  "17", "ZONE_NAME", "Your test DNS zone which is assigned by the LAB Service API"
-  "18", "DNS_SUBSCRIPTION_ID", "Your instance ID for the DNS subscription"
-  "19", "WAF_SUBSCRIPTION_ID", "Your instance ID for the Essential App Protect subscription"
-  "20", "GSLB_SUBSCRIPTION_ID", "Your instance ID for the DNS Load Balancer subscription"
-  "21", "WAF_SERVICE_INSTANCE_ID", "The ID of the app instance in your Essential App Protect subscription"
-  "22", "WAF_CNAME", "CNAME record for the app instance in your Essential App Protect subscription"
+  "8", "USER_ID", "ID of your main user"
+  "9", "ACCOUNT_ID", "ID of your main user’s primary account (where you will create instances)"
+  "10", "DNS_CATALOG_ID", "Unique ID for DNS service catalog"
+  "11", "WAF_CATALOG_ID", "Unique ID for the Essential App Protect service catalog"
+  "12", "GSLB_CATALOG_ID", "Unique ID for the DNS Load Balancer service catalog"
+  "13", "ZONE_NAME", "Your test DNS zone which is assigned by the LAB Service API"
+  "14", "DNS_SUBSCRIPTION_ID", "Your instance ID for the DNS subscription"
+  "15", "WAF_SUBSCRIPTION_ID", "Your instance ID for the Essential App Protect subscription"
+  "16", "GSLB_SUBSCRIPTION_ID", "Your instance ID for the DNS Load Balancer subscription"
+  "17", "WAF_SERVICE_INSTANCE_ID", "The ID of the app instance in your Essential App Protect subscription"
+  "18", "WAF_CNAME", "CNAME record for the app instance in your Essential App Protect subscription"
 
 Core API Calls
 ##############
@@ -176,10 +173,6 @@ Core API Calls
 `a)` Open the “F5 Cloud Services LAB” environment variables by clicking the “Environment Quick Look”, click into the field of the corresponding variable, and type the value of your main user email in the variable “USER_EMAIL” (click **Enter** after typing the values).
 
 .. figure:: _figures/5-6.jpg
-
-
-
-
 
    Repeat the same for the “USER_PASSWORD”.
 
@@ -201,7 +194,7 @@ These tokens are then stored for subsequent calls using a function inside Postma
         :alt: alternate text
         :align: center
 
-**NOTE**: If any of the subsequent Postman calls return a blank response or **"status": "unauthorized"** response (see the screenshot below), it means your user token has expired and you will need to re-login. To do that you just need to re-send the **Login** and **Limited User Login** requests.
+**NOTE**: If any of the subsequent Postman calls return a blank response or **"status": "unauthorized"** response (see the screenshot below), it means your user token has expired and you will need to re-login. To do that you just need to re-send the **Login** request.
 
 .. figure:: _figures/10.jpg
         :height: 60px
@@ -252,125 +245,8 @@ The retrieved User ID and Account ID are then stored for subsequent calls.
 
 More detailed information on this API request can be found `here <http://bit.ly/37hyQw3>`_.
 
-6. Limited Rights User Configuration
-************************************
 
-The Lab API calls utilize tokens to interface with the F5 Cloud Services API and the Lab Service API. For enhanced security, it’s recommended* that you create a separate user in the F5 portal with a “limited-user” role. This limited user’s token (“LIMITED_ACCESS_TOKEN” in the table above) will then be used by the Lab service API for auxiliary requests & services.
-
-`*` **NOTE**: it is possible for you to use the lab with just your main user credentials (Privileged User role) and re-use their token (“ACCESS_TOKEN” in the table above) as the “LIMITED_ACCESS_TOKEN”. To do that copy the value of “ACCESS_TOKEN” into the “LIMITED_ACCESS_TOKEN”.
-
-
-To create a limited user role, you can either (a) use the F5 Cloud Services portal to send an email invite to your alternate (limited-user) email, or (b) alternatively complete the invitation using the API. Pick a path option a) or b) to proceed below.
-
-`a)` Limited User invitation through the F5 Cloud Services portal
-
-   `1.` Log into the F5 Cloud Services portal with your main user/password.
-
-   `2.` Go to **Accounts** (left panel), select **Users** and hit the **Invite** button. Fill in the required information and make sure to select “Limited User” role.
-
-   .. figure:: _figures/13.jpg
-
-   `3.` Go to your **Name** (top right corner) and **Sign Out (important)**. You will be signed out as the main user.
-
-   `4.` Open the F5 Cloud Services portal invitation email, **Accept invitation** and complete the registration by creating a password.
-
-   .. figure:: _figures/14.jpg
-
-   `5.` If you haven’t created F5 Cloud Services account for your limited user, you’ll need to do so now (`Register <https://portal.cloudservices.f5.com/register>`_).
-
-   Use the alternate email to register. 
-
-   .. figure:: _figures/85.jpg
-
-   `6.` Return to **Postman** and add your limited-rights user name & password to the “LIMITED_USER_EMAIL” and “LIMITED_USER_PASSWORD” variables.
-
-   .. figure:: _figures/16.jpg
-
-`b)` Limited User invitation through the API (skip if you’ve added the limited-user through the F5 Cloud Services portal):
-
-   `1.` **Get Roles**
-
-   Select the **Get Roles** request and click **Send**. You will get descriptions of available roles, including their Role IDs.
-
-   .. figure:: _figures/87.jpg
-
-   You will get limited user's “role_id”.
-
-   .. figure:: _figures/18.jpg
-      :height: 140px
-      :width: 140 px
-      :scale: 230 %
-      :alt: alternate text
-      :align: center
-
-   The retrieved limited user's “role_id” is then stored for subsequent calls.
-
-   .. figure:: _figures/17.jpg
-      :height: 60px
-      :width: 190 px
-      :scale: 230 %
-      :alt: alternate text
-
-   More detailed information on this API request can be found `here <http://bit.ly/2tIWwe2>`_.
-
-   `2.` **Invite Limited User (optional)** request will generate an invitation using the API to the alternate (limited user) email. You will need to add the alternate email in the Environment variable “LIMITED_USER_EMAIL” before sending the request.
-
-   .. figure:: _figures/19.jpg
-      :height: 115px
-      :width: 220 px
-      :scale: 200 %
-      :alt: alternate text
-
-   The body of the request is below:
-
-   .. figure:: _figures/20.jpg
-      :height: 120px
-      :width: 220 px
-      :scale: 200 %
-      :alt: alternate text
-
-   The response will return the “invite_id”, “role_id”, user email and other information related to the invitation and the limited user.
-
-   .. figure:: _figures/21.jpg
-      :height: 130px
-      :width: 140 px
-      :scale: 200 %
-      :alt: alternate text
-
-   More detailed information on this API request can be found `here <http://bit.ly/36cSB6J>`_.
-
-   `3.` A limited user needs to accept the invitation (open the email with the invitation) and create a password to log in the F5 Cloud Services portal.
-
-   `4.` After that, you will need to return to Postman and add Limited User Password in the Environment variable “LIMITED_USER_PASSWORD”.
-
-   .. figure:: _figures/22.jpg
-      :height: 115px
-      :width: 220 px
-      :scale: 200 %
-      :alt: alternate text
-
-7. Log in as Limited User
-*************************
-
-At this point, you should either have a limited user created, or decided to re-use your main user token as a limited user token*. If you created limited user, let’s use the environment variables you’ve added for the limited user to log in & retrieve “LIMITED_ACCESS_TOKEN”.
-
-Select the **Limited User Login (optional)** request and click **Send**.
-
-.. figure:: _figures/23.jpg
-
-A successful login will result in Postman returning the tokens from the API, shown in the response body below:
-
-.. figure:: _figures/88.jpg
-
-After successful authentication you will see that Postman retrieves and stores the access token which will be stored into “LIMITED_ACCESS_TOKEN” variable to be used later.
-
-.. figure:: _figures/24.jpg
-
-More detailed information on this API request can be found `here <http://bit.ly/36ffsyy>`_.
-
-`*` **NOTE**: If you did not create a limited user and you’re comfortable using the main Privileged User for the entirety of the lab, you can copy the value of “ACCESS_TOKEN” into the “LIMITED_ACCESS_TOKEN”.
-
-8. Get the Zone Name for your Lab
+6. Get the Zone Name for your Lab
 *********************************
 
 This Lab contains an API that provides utility functions including DNS management, geo proximity load balance testing, and limited (targeted) attacks on specific instances. The first step to identify your individual lab is to retrieve the Zone Name for your lab with the following API Call:
@@ -379,7 +255,7 @@ This Lab contains an API that provides utility functions including DNS managemen
 **Get DNS Zone (lab)**
 
 
-Click **Send**. This call will pass your “LIMITED_ACCESS_TOKEN” in the header of the request to the Labs API in order to validate existence of your F5 account & return back a ZONE name unique to your lab.
+Click **Send**. This call will pass your “ACCESS_TOKEN” in the header of the request to the Labs API in order to validate existence of your F5 account & return back a ZONE name unique to your lab.
 
 
 
@@ -398,13 +274,11 @@ Sending this request will automatically capture of the ZONE variables:
 
 This ZONE name will be used throughout the lab as the domain name for your test applications.
 
-9. User Account Operations
+7. User Account Operations
 **************************
 
 
 `a)` Get User Membership to F5 Cloud Services accounts
-
-
 
 **Get User Membership** returns info on your main user’s access to F5 Cloud Services accounts, which are owned/full rights and which are limited.
 
@@ -634,7 +508,7 @@ More detailed information on this API request can be found `here <http://bit.ly/
 3. Test NA Pool
 ***************
 
-Send the **Test NA Availability (lab)** request to execute a call against the Lab service API, which in turn uses an external VM (located in the USA) to run a "wget" to retrieve the response from http://auction.cloudservicesdemo.net. This should show the only available instance NA1 in the HTML that is returned.
+Send the **Test NA Availability (lab)** request to execute a call against the Lab service API, which in turn uses an external VM (located in the USA) to run a "wget" to retrieve the response from http://auction.securelab.online. This should show the only available instance NA1 in the HTML that is returned.
 
 .. figure:: _figures/52.jpg
 
@@ -682,7 +556,7 @@ And you will see all the information on available pools and regions:
 7. Test Proximity Rules (lab)
 *****************************
 
-Send the **Test Proximity Rules (lab)** request, which uses an external VM (located in Europe) to run a "wget" to retrieve the response from http://auction.cloudservicesdemo.net. This simulates what an EU-based customer would see when opening this URL in their browser.
+Send the **Test Proximity Rules (lab)** request, which uses an external VM (located in Europe) to run a "wget" to retrieve the response from http://auction.securelab.online. This simulates what an EU-based customer would see when opening this URL in their browser.
 
 .. figure:: _figures/60.jpg
 
@@ -908,21 +782,7 @@ More detailed information on these API requests can be found `here <http://bit.l
 
 .. figure:: _figures/111.jpg
 
-`b)` If you created a limited user role, we recommend that you clear your **LIMITED_ACCESS_TOKEN** from the Lab Service API for security purposes.
-
-In order to do that, send the **Limited User Logout** request, which uses your **LIMITED_ACCESS_TOKEN**:
-
-.. figure:: _figures/108.jpg
-
-You will get the following response with the status showing "200 OK":
-
-.. figure:: _figures/109.jpg
-
-Your **LIMITED_ACCESS_TOKEN** will be considered invalid:
-
-.. figure:: _figures/110.jpg
-
-`c)` If you didn’t create a limited user role and used your main user credentials instead (“ACCESS_TOKEN” AS “LIMITED_ACCESS_TOKEN”) in steps 6 and 7 of **Core API Calls** section, we recommend that you clear your tokens from the Lab Service API for security purposes.
+`b)` We recommend that you clear your tokens from the Lab Service API for security purposes.
 
 In order to do that, send the **Logout** request, which uses your **ACCESS_TOKEN**:
 
