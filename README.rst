@@ -94,7 +94,7 @@ The following diagram is a simplified architecture of the Auction application:
 `b)` Use the button below to import collection and environment to the Postman or manually import it from the `Git repo for this lab <https://bit.ly/3jdhnf3>`_
 
 .. image:: https://run.pstmn.io/button.svg
-   :target: https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/29616f564f0b7bae335c#?env%5BF5%20Cloud%20Services%20LAB%5D=W3sia2V5IjoiSE9TVE5BTUUiLCJ2YWx1ZSI6ImFwaS5jbG91ZHNlcnZpY2VzLmY1LmNvbSIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiQVBJX1ZFUlNJT04iLCJ2YWx1ZSI6InYxIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJETlNfV0VCX0FETUlOIiwidmFsdWUiOiI1NC4yMTEuMTIuMTczIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJBQ0NPVU5UX05BTUUiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiVVNFUl9FTUFJTCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJVU0VSX1BBU1NXT1JEIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfV0=
+   :target: https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/3945db58cb837087df69#?env%5BF5%20Cloud%20Services%20LAB%5D=W3sia2V5IjoiSE9TVE5BTUUiLCJ2YWx1ZSI6ImFwaS5jbG91ZHNlcnZpY2VzLmY1LmNvbSIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiQVBJX1ZFUlNJT04iLCJ2YWx1ZSI6InYxIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJETlNfV0VCX0FETUlOIiwidmFsdWUiOiI1NC4yMTEuMTIuMTczIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJBQ0NPVU5UX05BTUUiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiVVNFUl9FTUFJTCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJVU0VSX1BBU1NXT1JEIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfV0=
 
 
 .. figure:: _figures/1.png
