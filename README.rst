@@ -508,7 +508,7 @@ More detailed information on this API request can be found `here <http://bit.ly/
 3. Test NA Pool
 ***************
 
-Send the **Test NA Availability (lab)** request to execute a call against the Lab service API, which in turn uses an external VM (located in the USA) to run a "wget" to retrieve the response from http://auction.securelab.online. This should show the only available instance NA1 in the HTML that is returned.
+Send the **Test NA Availability (lab)** request to execute a call against the Lab service API, which in turn uses an external VM (located in the USA) to run a "wget" to retrieve the response from the auction website. This should show the only available instance NA1 in the HTML that is returned.
 
 .. figure:: _figures/52.jpg
 
@@ -556,7 +556,7 @@ And you will see all the information on available pools and regions:
 7. Test Proximity Rules (lab)
 *****************************
 
-Send the **Test Proximity Rules (lab)** request, which uses an external VM (located in Europe) to run a "wget" to retrieve the response from http://auction.securelab.online. This simulates what an EU-based customer would see when opening this URL in their browser.
+Send the **Test Proximity Rules (lab)** request, which uses an external VM (located in Europe) to run a "wget" to retrieve the response from the auction website. This simulates what an EU-based customer would see when opening this URL in their browser.
 
 .. figure:: _figures/60.jpg
 
