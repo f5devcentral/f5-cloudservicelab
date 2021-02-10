@@ -74,7 +74,7 @@ The following are the demo application instances:
    :header: "Name", "Geography", "Cloud/Region", "IP", "URI"
 
    "AU", "Australia", "AWS - Asia Pacific (Sydney)", "54.206.13.195", "http://au-auction.securelab.online/"
-   "EU", "Europe", "AWS – Europe (Frankfurt)", "35.180.122.91", "http://eu1-auction.securelab.online/"
+   "EU1", "Europe", "AWS – Europe (Paris)", "35.180.122.91", "http://eu1-auction.securelab.online/"
    "NA1", "North America", "AWS - US East (N. Virginia)", "34.229.48.248", "http://na1-auction.securelab.online/"
    "NA2", "North America", "AWS – US East (N. Virginia)", "18.232.64.254", "http://na2-auction.securelab.online/"
    "NA3", "North America", "Azure – US East", "52.249.252.91", "http://na3-auction.securelab.online/"
