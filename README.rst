@@ -74,7 +74,7 @@ The following are the demo application instances:
    :header: "Name", "Geography", "Cloud/Region", "IP", "URI"
 
    "AU", "Australia", "AWS - Asia Pacific (Sydney)", "54.206.13.195", "http://au-auction.securelab.online/"
-   "EU", "Europe", "AWS – Europe (Frankfurt)", "3.122.191.227", "http://eu-auction.securelab.online/"
+   "EU", "Europe", "AWS – Europe (Frankfurt)", "35.180.122.91", "http://eu1-auction.securelab.online/"
    "NA1", "North America", "AWS - US East (N. Virginia)", "34.229.48.248", "http://na1-auction.securelab.online/"
    "NA2", "North America", "AWS – US East (N. Virginia)", "18.232.64.254", "http://na2-auction.securelab.online/"
    "NA3", "North America", "Azure – US East", "52.249.252.91", "http://na3-auction.securelab.online/"
@@ -91,11 +91,12 @@ The following diagram is a simplified architecture of the Auction application:
 
 `a)` Open Postman, create a Postman account if you don’t have one and choose to do so, and sign in.
 
-`b)` Use the button below to import collection and environment to the Postman or manually import it from the `Git repo for this lab <https://bit.ly/3jdhnf3>`_
+`b)` Use the "Run in Postman" button below to import collection and environment to the Postman or manually import it from the `Git repo for this lab <https://bit.ly/3jdhnf3>`_
 
 .. image:: https://run.pstmn.io/button.svg
-   :target: https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/3945db58cb837087df69#?env%5BF5%20Cloud%20Services%20LAB%5D=W3sia2V5IjoiSE9TVE5BTUUiLCJ2YWx1ZSI6ImFwaS5jbG91ZHNlcnZpY2VzLmY1LmNvbSIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiQVBJX1ZFUlNJT04iLCJ2YWx1ZSI6InYxIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJETlNfV0VCX0FETUlOIiwidmFsdWUiOiI1NC4yMTEuMTIuMTczIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJBQ0NPVU5UX05BTUUiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiVVNFUl9FTUFJTCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJVU0VSX1BBU1NXT1JEIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfV0=
+   :target: https://app.getpostman.com/run-collection/222d7e7804f37069898b#?env%5BF5%20Cloud%20Services%20LAB%5D=W3sia2V5IjoiSE9TVE5BTUUiLCJ2YWx1ZSI6ImFwaS5jbG91ZHNlcnZpY2VzLmY1LmNvbSIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiQVBJX1ZFUlNJT04iLCJ2YWx1ZSI6InYxIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJETlNfV0VCX0FETUlOIiwidmFsdWUiOiI1NC4yMTEuMTIuMTczIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJBQ0NPVU5UX05BTUUiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiVVNFUl9FTUFJTCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJVU0VSX1BBU1NXT1JEIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfV0=
 
+`b)` Choose "Postman for Windows" and open collection in Postman
 
 .. figure:: _figures/1.png
 
