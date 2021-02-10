@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4afd6257-7adf-40a7-8a56-de1fc2f780a0",
+		"_postman_id": "a92f64f3-91d3-4c05-adc5-1c684e99a9d5",
 		"name": "F5 Cloud Services LAB",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,12 +14,10 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "8887d552-298c-4c58-b9a8-247fe5ae62d2",
 								"exec": [
 									"pm.test(\"Set token variable\", function() {",
 									"    var jsonData = pm.response.json();",
 									"    pm.environment.set(\"ACCESS_TOKEN\", jsonData.access_token);",
-									"    pm.environment.set(\"LIMITED_ACCESS_TOKEN\", jsonData.access_token);",
 									"})",
 									""
 								],
@@ -65,7 +63,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f94b5a0e-cff2-4e73-8f56-2881d635e26a",
 								"exec": [
 									"pm.test(\"Set account_id variable\", function () {",
 									"    var jsonData = pm.response.json();",
@@ -116,7 +113,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "d480539c-c298-4bdf-b0c8-cb18e6e11f24",
 								"exec": [
 									"pm.test(\"Set account_id and user_id variables\", function () {",
 									"    var jsonData = pm.response.json();",
@@ -156,155 +152,11 @@
 					"response": []
 				},
 				{
-					"name": "Get Roles",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "c70583a7-d323-4e92-8937-6070e4d3f4b5",
-								"exec": [
-									"pm.test(\"Set Roles Environemnt\", function() {",
-									"    var jsonData = pm.response.json();",
-									"    for(var i=0; i<jsonData.roles.length; i++) {",
-									"        if (jsonData.roles[i].name === \"limited-user\") {",
-									"            pm.environment.set(\"LIMITED_USER_ROLE_ID\", jsonData.roles[i].id);",
-									"        }",
-									"    }",
-									"})"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{ACCESS_TOKEN}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "https://{{HOSTNAME}}/{{API_VERSION}}/svc-account/roles",
-							"protocol": "https",
-							"host": [
-								"{{HOSTNAME}}"
-							],
-							"path": [
-								"{{API_VERSION}}",
-								"svc-account",
-								"roles"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Invite Limited User (optional)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "85e624d2-83c2-4b8a-a69e-0d1f1326ac6a",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Bearer {{ACCESS_TOKEN}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"inviter_account_id\": \"{{ACCOUNT_ID}}\",\n\t\"inviter_user_id\": \"{{USER_ID}}\",\n\t\"account_ids\": [\n\t\t\"{{ACCOUNT_ID}}\"\n\t],\n\t\"invitees\": [\n\t\t{\n\t\t\t\"first_name\": \"limited\",\n\t\t\t\"last_name\": \"user\",\n\t\t\t\"email\": \"{{LIMITED_USER_EMAIL}}\"\n\t\t}\n\t],\n\t\"role_id\": \"{{LIMITED_USER_ROLE_ID}}\"\n}"
-						},
-						"url": {
-							"raw": "https://{{HOSTNAME}}/{{API_VERSION}}/svc-account/invites",
-							"protocol": "https",
-							"host": [
-								"{{HOSTNAME}}"
-							],
-							"path": [
-								"{{API_VERSION}}",
-								"svc-account",
-								"invites"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Limited User Login (optional)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "178432e1-0473-4684-bf17-fbdeedb4ec9c",
-								"exec": [
-									"pm.test(\"Set token variable\", function() {",
-									"    var jsonData = pm.response.json();",
-									"    pm.environment.set(\"LIMITED_ACCESS_TOKEN\", jsonData.access_token);",
-									"})",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"username\": \"{{LIMITED_USER_EMAIL}}\", \"password\": \"{{LIMITED_USER_PASSWORD}}\" }\""
-						},
-						"url": {
-							"raw": "https://{{HOSTNAME}}/{{API_VERSION}}/svc-auth/login",
-							"protocol": "https",
-							"host": [
-								"{{HOSTNAME}}"
-							],
-							"path": [
-								"{{API_VERSION}}",
-								"svc-auth",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Get DNS Zone (lab)",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "93d98398-c86b-4524-b2d4-82ae57f0d49a",
 								"exec": [
 									"pm.test(\"Get User's DNS Zone Name\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -328,7 +180,7 @@
 							{
 								"key": "Authorization",
 								"type": "text",
-								"value": "Bearer {{LIMITED_ACCESS_TOKEN}}"
+								"value": "Bearer {{ACCESS_TOKEN}}"
 							},
 							{
 								"key": "Labid",
@@ -355,12 +207,12 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "683a7de0-09c3-44c2-aeb0-079fcaaea90f",
 								"exec": [
 									"pm.test(\"Switch account\", function() {",
 									"    var jsonData = pm.response.json();",
+									"    var accountName = pm.environment.get(\"ACCOUNT_NAME\");",
 									"    for(var i=0; i<jsonData.memberships.length; i++) {",
-									"        if (jsonData.memberships[i].account_name === \"{{ACCOUNT_NAME}}\") {",
+									"        if (jsonData.memberships[i].account_name === accountName) {",
 									"            pm.environment.set(\"ACCOUNT_ID\", jsonData.memberships[i].account_id);",
 									"        }",
 									"    }",
@@ -402,7 +254,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "4ab7a358-74cd-430c-ae49-ce1d2f90b41c",
 								"exec": [
 									"pm.test(\"Set Catalog variables\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -497,7 +348,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "8e7a970d-61c6-4a67-9d6c-efbf28269fc9",
 								"exec": [
 									"pm.test(\"Find previously created subscriptions\", function() {",
 									"    const jsonData = pm.response.json();",
@@ -557,8 +407,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "DNS",
@@ -569,7 +418,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "20bf3410-fccd-49b4-9f2a-f307c3593c12",
 								"exec": [
 									""
 								],
@@ -627,7 +475,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1abb7e66-0fe2-4b93-86dd-8e9003b4f70c",
 								"exec": [
 									"pm.test(\"Set DNS subscription id variable\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -717,7 +564,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1ab00853-b5c9-4c5f-b57d-e731e0f63174",
 								"exec": [
 									""
 								],
@@ -757,8 +603,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "DNS Load Balancer",
@@ -769,7 +614,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "7315f1ca-f0aa-4e8d-9e7c-2571bfc88501",
 								"exec": [
 									"pm.test(\"Set GSLB subscription id variable\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -866,7 +710,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer {{LIMITED_ACCESS_TOKEN}}",
+								"value": "Bearer {{ACCESS_TOKEN}}",
 								"type": "text"
 							},
 							{
@@ -912,7 +756,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"subscription_id\": \"{{GSLB_SUBSCRIPTION_ID}}\",\n  \"account_id\": \"{{ACCOUNT_ID}}\",\n  \"catalog_id\": \"{{GSLB_CATALOG_ID}}\",\n  \"service_instance_name\": \"{{ZONE_NAME}}\",\n  \"configuration\": {\n    \"gslb_service\": {\n      \"zone\": \"{{ZONE_NAME}}\",\n      \"load_balanced_records\": {\n        \"lbrs_auction\": {\n          \"aliases\": [\n            \"auction\"\n          ],\n          \"display_name\": \"auction.{{ZONE_NAME}}\",\n          \"enable\": true,\n          \"persistence\": false,\n          \"proximity_rules\": [\n            {\n              \"pool\": \"pools_usa\",\n              \"region\": \"global\",\n              \"score\": 1\n            },\n            {\n              \"pool\": \"pools_europe\",\n              \"region\": \"global\",\n              \"score\": 1\n            },\n            {\n              \"pool\": \"pools_australia\",\n              \"region\": \"global\",\n              \"score\": 1\n            }\n          ],\n          \"rr_type\": \"A\"\n        }\n      },\n      \"pools\": {\n        \"pools_usa\": {\n          \"display_name\": \"usa\",\n          \"enable\": true,\n          \"load_balancing_mode\": \"round-robin\",\n          \"max_answers\": 1,\n          \"members\": [\n            {\n              \"final\": null,\n              \"monitor\": \"basic\",\n              \"virtual_server\": \"ipEndpoint_na1_auction\"\n            },\n            {\n              \"final\": null,\n              \"monitor\": \"basic\",\n              \"virtual_server\": \"ipEndpoint_na2_auction\"\n            },\n            {\n              \"final\": null,\n              \"monitor\": \"basic\",\n              \"virtual_server\": \"ipEndpoint_na3_auction\"\n            }\n          ],\n          \"remark\": \"\",\n          \"rr_type\": \"A\",\n          \"ttl\": 30\n        },\n        \"pools_europe\": {\n          \"display_name\": \"europe\",\n          \"enable\": true,\n          \"load_balancing_mode\": \"round-robin\",\n          \"max_answers\": 1,\n          \"members\": [\n            {\n              \"final\": null,\n              \"monitor\": \"basic\",\n              \"virtual_server\": \"ipEndpoint_eu_auction\"\n            }\n          ],\n          \"remark\": \"\",\n          \"rr_type\": \"A\",\n          \"ttl\": 30\n        },\n        \"pools_australia\": {\n          \"display_name\": \"australia\",\n          \"enable\": true,\n          \"load_balancing_mode\": \"round-robin\",\n          \"max_answers\": 1,\n          \"members\": [\n            {\n              \"final\": null,\n              \"monitor\": \"basic\",\n              \"virtual_server\": \"ipEndpoint_au_auction\"\n            }\n          ],\n          \"remark\": \"\",\n          \"rr_type\": \"A\",\n          \"ttl\": 30\n        }\n      },\n      \"virtual_servers\": {\n        \"ipEndpoint_na1_auction\": {\n          \"address\": \"34.229.48.248\",\n          \"display_name\": \"na1-auction\",\n          \"monitor\": \"none\",\n          \"port\": 80\n        },\n        \"ipEndpoint_eu_auction\": {\n          \"address\": \"3.122.191.227\",\n          \"display_name\": \"eu-auction\",\n          \"monitor\": \"none\",\n          \"port\": 80\n        },\n        \"ipEndpoint_na2_auction\": {\n          \"address\": \"18.232.64.254\",\n          \"display_name\": \"na2-auction\",\n          \"monitor\": \"none\",\n          \"port\": 80\n        },\n        \"ipEndpoint_na3_auction\": {\n          \"address\": \"13.82.106.211\",\n          \"display_name\": \"na3-auction\",\n          \"monitor\": \"none\",\n          \"port\": 80\n        },\n        \"ipEndpoint_au_auction\": {\n          \"address\": \"54.206.13.195\",\n          \"display_name\": \"au-auction\",\n          \"monitor\": \"none\",\n          \"port\": 80\n        }\n      }\n    }\n  }\n}"
+							"raw": "{\n  \"subscription_id\": \"{{GSLB_SUBSCRIPTION_ID}}\",\n  \"account_id\": \"{{ACCOUNT_ID}}\",\n  \"catalog_id\": \"{{GSLB_CATALOG_ID}}\",\n  \"service_instance_name\": \"{{ZONE_NAME}}\",\n  \"configuration\": {\n    \"gslb_service\": {\n      \"zone\": \"{{ZONE_NAME}}\",\n      \"load_balanced_records\": {\n        \"lbrs_auction\": {\n          \"aliases\": [\n            \"auction\"\n          ],\n          \"display_name\": \"auction.{{ZONE_NAME}}\",\n          \"enable\": true,\n          \"persistence\": false,\n          \"proximity_rules\": [\n            {\n              \"pool\": \"pools_usa\",\n              \"region\": \"global\",\n              \"score\": 1\n            },\n            {\n              \"pool\": \"pools_europe\",\n              \"region\": \"global\",\n              \"score\": 1\n            },\n            {\n              \"pool\": \"pools_australia\",\n              \"region\": \"global\",\n              \"score\": 1\n            }\n          ],\n          \"rr_type\": \"A\"\n        }\n      },\n      \"pools\": {\n        \"pools_usa\": {\n          \"display_name\": \"usa\",\n          \"enable\": true,\n          \"load_balancing_mode\": \"round-robin\",\n          \"max_answers\": 1,\n          \"members\": [\n            {\n              \"final\": null,\n              \"monitor\": \"basic\",\n              \"virtual_server\": \"ipEndpoint_na1_auction\"\n            },\n            {\n              \"final\": null,\n              \"monitor\": \"basic\",\n              \"virtual_server\": \"ipEndpoint_na2_auction\"\n            },\n            {\n              \"final\": null,\n              \"monitor\": \"basic\",\n              \"virtual_server\": \"ipEndpoint_na3_auction\"\n            }\n          ],\n          \"remark\": \"\",\n          \"rr_type\": \"A\",\n          \"ttl\": 30\n        },\n        \"pools_europe\": {\n          \"display_name\": \"europe\",\n          \"enable\": true,\n          \"load_balancing_mode\": \"round-robin\",\n          \"max_answers\": 1,\n          \"members\": [\n            {\n              \"final\": null,\n              \"monitor\": \"basic\",\n              \"virtual_server\": \"ipEndpoint_eu_auction\"\n            }\n          ],\n          \"remark\": \"\",\n          \"rr_type\": \"A\",\n          \"ttl\": 30\n        },\n        \"pools_australia\": {\n          \"display_name\": \"australia\",\n          \"enable\": true,\n          \"load_balancing_mode\": \"round-robin\",\n          \"max_answers\": 1,\n          \"members\": [\n            {\n              \"final\": null,\n              \"monitor\": \"basic\",\n              \"virtual_server\": \"ipEndpoint_au_auction\"\n            }\n          ],\n          \"remark\": \"\",\n          \"rr_type\": \"A\",\n          \"ttl\": 30\n        }\n      },\n      \"virtual_servers\": {\n        \"ipEndpoint_na1_auction\": {\n          \"address\": \"34.229.48.248\",\n          \"display_name\": \"na1-auction\",\n          \"monitor\": \"none\",\n          \"port\": 80\n        },\n        \"ipEndpoint_eu_auction\": {\n          \"address\": \"35.180.122.91\",\n          \"display_name\": \"eu1-auction\",\n          \"monitor\": \"none\",\n          \"port\": 80\n        },\n        \"ipEndpoint_na2_auction\": {\n          \"address\": \"18.232.64.254\",\n          \"display_name\": \"na2-auction\",\n          \"monitor\": \"none\",\n          \"port\": 80\n        },\n        \"ipEndpoint_na3_auction\": {\n          \"address\": \"52.249.252.91\",\n          \"display_name\": \"na3-auction\",\n          \"monitor\": \"none\",\n          \"port\": 80\n        },\n        \"ipEndpoint_au_auction\": {\n          \"address\": \"54.206.13.195\",\n          \"display_name\": \"au-auction\",\n          \"monitor\": \"none\",\n          \"port\": 80\n        }\n      }\n    }\n  }\n}"
 						},
 						"url": {
 							"raw": "https://{{HOSTNAME}}/{{API_VERSION}}/svc-subscription/subscriptions/{{GSLB_SUBSCRIPTION_ID}}",
@@ -943,7 +787,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer {{LIMITED_ACCESS_TOKEN}}",
+								"value": "Bearer {{ACCESS_TOKEN}}",
 								"type": "text"
 							},
 							{
@@ -989,7 +833,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"subscription_id\": \"{{GSLB_SUBSCRIPTION_ID}}\",\n  \"account_id\": \"{{ACCOUNT_ID}}\",\n  \"catalog_id\": \"{{GSLB_CATALOG_ID}}\",\n  \"service_instance_name\": \"{{ZONE_NAME}}\",\n  \"configuration\": {\n    \"gslb_service\": {\n      \"zone\": \"{{ZONE_NAME}}\",\n      \"load_balanced_records\": {\n        \"lbrs_auction\": {\n          \"aliases\": [\n            \"auction\"\n          ],\n          \"display_name\": \"auction.{{ZONE_NAME}}\",\n          \"enable\": true,\n          \"persistence\": false,\n          \"proximity_rules\": [\n            {\n              \"pool\": \"pools_usa\",\n              \"region\": \"regions_usa\",\n              \"score\": 1\n            },\n            {\n              \"pool\": \"pools_europe\",\n              \"region\": \"regions_europe\",\n              \"score\": 50\n            },\n            {\n              \"pool\": \"pools_australia\",\n              \"region\": \"regions_australia\",\n              \"score\": 50\n            }\n          ],\n          \"rr_type\": \"A\"\n        }\n      },\n      \"pools\": {\n        \"pools_usa\": {\n          \"display_name\": \"usa\",\n          \"enable\": true,\n          \"load_balancing_mode\": \"round-robin\",\n          \"max_answers\": 1,\n          \"members\": [\n            {\n              \"final\": null,\n              \"monitor\": \"basic\",\n              \"virtual_server\": \"ipEndpoint_na1_auction\"\n            },\n            {\n              \"final\": null,\n              \"monitor\": \"basic\",\n              \"virtual_server\": \"ipEndpoint_na2_auction\"\n            },\n            {\n              \"final\": null,\n              \"monitor\": \"basic\",\n              \"virtual_server\": \"ipEndpoint_na3_auction\"\n            }\n          ],\n          \"remark\": \"\",\n          \"rr_type\": \"A\",\n          \"ttl\": 30\n        },\n        \"pools_europe\": {\n          \"display_name\": \"europe\",\n          \"enable\": true,\n          \"load_balancing_mode\": \"round-robin\",\n          \"max_answers\": 1,\n          \"members\": [\n            {\n              \"final\": null,\n              \"monitor\": \"basic\",\n              \"virtual_server\": \"ipEndpoint_eu_auction\"\n            }\n          ],\n          \"remark\": \"\",\n          \"rr_type\": \"A\",\n          \"ttl\": 30\n        },\n        \"pools_australia\": {\n          \"display_name\": \"australia\",\n          \"enable\": true,\n          \"load_balancing_mode\": \"round-robin\",\n          \"max_answers\": 1,\n          \"members\": [\n            {\n              \"final\": null,\n              \"monitor\": \"basic\",\n              \"virtual_server\": \"ipEndpoint_au_auction\"\n            }\n          ],\n          \"remark\": \"\",\n          \"rr_type\": \"A\",\n          \"ttl\": 30\n        }\n      },\n      \"regions\": {\n        \"regions_europe\": {\n          \"display_name\": \"europe\",\n          \"sectors\": [\n            {\n              \"code\": \"EU\",\n              \"scale\": \"continent\"\n            }\n          ]\n        },\n        \"regions_usa\": {\n          \"display_name\": \"usa\",\n          \"sectors\": [\n            {\n              \"code\": \"NA\",\n              \"scale\": \"continent\"\n            }\n          ]\n        },\n        \"regions_australia\": {\n          \"display_name\": \"australia\",\n          \"sectors\": [\n            {\n              \"code\": \"AU\",\n              \"scale\": \"continent\"\n            }\n          ]\n        }\n      },\n      \"virtual_servers\": {\n         \"ipEndpoint_na1_auction\": {\n          \"address\": \"34.229.48.248\",\n          \"display_name\": \"na1-auction\",\n          \"monitor\": \"none\",\n          \"port\": 80\n        },\n        \"ipEndpoint_eu_auction\": {\n          \"address\": \"3.122.191.227\",\n          \"display_name\": \"eu-auction\",\n          \"monitor\": \"none\",\n          \"port\": 80\n        },\n        \"ipEndpoint_na2_auction\": {\n          \"address\": \"18.232.64.254\",\n          \"display_name\": \"na2-auction\",\n          \"monitor\": \"none\",\n          \"port\": 80\n        },\n        \"ipEndpoint_na3_auction\": {\n          \"address\": \"13.82.106.211\",\n          \"display_name\": \"na3-auction\",\n          \"monitor\": \"none\",\n          \"port\": 80\n        },\n        \"ipEndpoint_au_auction\": {\n          \"address\": \"54.206.13.195\",\n          \"display_name\": \"au-auction\",\n          \"monitor\": \"none\",\n          \"port\": 80\n        }\n      },\n      \"regions\": {\n        \"regions_europe\": {\n          \"display_name\": \"europe\",\n          \"sectors\": [\n            {\n              \"code\": \"EU\",\n              \"scale\": \"continent\"\n            }\n          ]\n        },\n        \"regions_australia\": {\n          \"display_name\": \"australia\",\n          \"sectors\": [\n            {\n              \"scale\": \"continent\",\n              \"code\": \"OC\"\n            }\n          ]\n        },\n        \"regions_usa\": {\n          \"display_name\": \"usa\",\n          \"sectors\": [\n            {\n              \"code\": \"NA\",\n              \"scale\": \"continent\"\n            }\n          ]\n        }\n      }\n    }\n  },\n  \"service_type\": \"gslb\"\n}"
+							"raw": "{\n  \"subscription_id\": \"{{GSLB_SUBSCRIPTION_ID}}\",\n  \"account_id\": \"{{ACCOUNT_ID}}\",\n  \"catalog_id\": \"{{GSLB_CATALOG_ID}}\",\n  \"service_instance_name\": \"{{ZONE_NAME}}\",\n  \"configuration\": {\n    \"gslb_service\": {\n      \"zone\": \"{{ZONE_NAME}}\",\n      \"load_balanced_records\": {\n        \"lbrs_auction\": {\n          \"aliases\": [\n            \"auction\"\n          ],\n          \"display_name\": \"auction.{{ZONE_NAME}}\",\n          \"enable\": true,\n          \"persistence\": false,\n          \"proximity_rules\": [\n            {\n              \"pool\": \"pools_usa\",\n              \"region\": \"regions_usa\",\n              \"score\": 1\n            },\n            {\n              \"pool\": \"pools_europe\",\n              \"region\": \"regions_europe\",\n              \"score\": 50\n            },\n            {\n              \"pool\": \"pools_australia\",\n              \"region\": \"regions_australia\",\n              \"score\": 50\n            }\n          ],\n          \"rr_type\": \"A\"\n        }\n      },\n      \"pools\": {\n        \"pools_usa\": {\n          \"display_name\": \"usa\",\n          \"enable\": true,\n          \"load_balancing_mode\": \"round-robin\",\n          \"max_answers\": 1,\n          \"members\": [\n            {\n              \"final\": null,\n              \"monitor\": \"basic\",\n              \"virtual_server\": \"ipEndpoint_na1_auction\"\n            },\n            {\n              \"final\": null,\n              \"monitor\": \"basic\",\n              \"virtual_server\": \"ipEndpoint_na2_auction\"\n            },\n            {\n              \"final\": null,\n              \"monitor\": \"basic\",\n              \"virtual_server\": \"ipEndpoint_na3_auction\"\n            }\n          ],\n          \"remark\": \"\",\n          \"rr_type\": \"A\",\n          \"ttl\": 30\n        },\n        \"pools_europe\": {\n          \"display_name\": \"europe\",\n          \"enable\": true,\n          \"load_balancing_mode\": \"round-robin\",\n          \"max_answers\": 1,\n          \"members\": [\n            {\n              \"final\": null,\n              \"monitor\": \"basic\",\n              \"virtual_server\": \"ipEndpoint_eu_auction\"\n            }\n          ],\n          \"remark\": \"\",\n          \"rr_type\": \"A\",\n          \"ttl\": 30\n        },\n        \"pools_australia\": {\n          \"display_name\": \"australia\",\n          \"enable\": true,\n          \"load_balancing_mode\": \"round-robin\",\n          \"max_answers\": 1,\n          \"members\": [\n            {\n              \"final\": null,\n              \"monitor\": \"basic\",\n              \"virtual_server\": \"ipEndpoint_au_auction\"\n            }\n          ],\n          \"remark\": \"\",\n          \"rr_type\": \"A\",\n          \"ttl\": 30\n        }\n      },\n      \"regions\": {\n        \"regions_europe\": {\n          \"display_name\": \"europe\",\n          \"sectors\": [\n            {\n              \"code\": \"EU\",\n              \"scale\": \"continent\"\n            }\n          ]\n        },\n        \"regions_usa\": {\n          \"display_name\": \"usa\",\n          \"sectors\": [\n            {\n              \"code\": \"NA\",\n              \"scale\": \"continent\"\n            }\n          ]\n        },\n        \"regions_australia\": {\n          \"display_name\": \"australia\",\n          \"sectors\": [\n            {\n              \"code\": \"AU\",\n              \"scale\": \"continent\"\n            }\n          ]\n        }\n      },\n      \"virtual_servers\": {\n         \"ipEndpoint_na1_auction\": {\n          \"address\": \"34.229.48.248\",\n          \"display_name\": \"na1-auction\",\n          \"monitor\": \"none\",\n          \"port\": 80\n        },\n        \"ipEndpoint_eu_auction\": {\n          \"address\": \"35.180.122.91\",\n          \"display_name\": \"eu1-auction\",\n          \"monitor\": \"none\",\n          \"port\": 80\n        },\n        \"ipEndpoint_na2_auction\": {\n          \"address\": \"18.232.64.254\",\n          \"display_name\": \"na2-auction\",\n          \"monitor\": \"none\",\n          \"port\": 80\n        },\n        \"ipEndpoint_na3_auction\": {\n          \"address\": \"52.249.252.91\",\n          \"display_name\": \"na3-auction\",\n          \"monitor\": \"none\",\n          \"port\": 80\n        },\n        \"ipEndpoint_au_auction\": {\n          \"address\": \"54.206.13.195\",\n          \"display_name\": \"au-auction\",\n          \"monitor\": \"none\",\n          \"port\": 80\n        }\n      },\n      \"regions\": {\n        \"regions_europe\": {\n          \"display_name\": \"europe\",\n          \"sectors\": [\n            {\n              \"code\": \"EU\",\n              \"scale\": \"continent\"\n            }\n          ]\n        },\n        \"regions_australia\": {\n          \"display_name\": \"australia\",\n          \"sectors\": [\n            {\n              \"scale\": \"continent\",\n              \"code\": \"OC\"\n            }\n          ]\n        },\n        \"regions_usa\": {\n          \"display_name\": \"usa\",\n          \"sectors\": [\n            {\n              \"code\": \"NA\",\n              \"scale\": \"continent\"\n            }\n          ]\n        }\n      }\n    }\n  },\n  \"service_type\": \"gslb\"\n}"
 						},
 						"url": {
 							"raw": "https://{{HOSTNAME}}/{{API_VERSION}}/svc-subscription/subscriptions/{{GSLB_SUBSCRIPTION_ID}}",
@@ -1021,7 +865,7 @@
 							{
 								"key": "Authorization",
 								"type": "text",
-								"value": "Bearer {{LIMITED_ACCESS_TOKEN}}"
+								"value": "Bearer {{ACCESS_TOKEN}}"
 							},
 							{
 								"key": "Labid",
@@ -1047,8 +891,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Essential App Protect",
@@ -1059,7 +902,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "e16ac58e-7ad3-4a46-8ea3-124397994992",
 								"exec": [
 									"pm.test(\"Set EAP subscription id variable\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -1088,10 +930,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"account_id\": \"{{ACCOUNT_ID}}\",\n    \"catalog_id\": \"{{WAF_CATALOG_ID}}\",\n    \"service_instance_name\": \"na2-auction.{{ZONE_NAME}}\",\n    \"configuration\": {\n        \"waf_service\": {\n            \"application\": {\n                \"description\": \"na2-auction.{{ZONE_NAME}}\",\n                \"fqdn\": \"na2-auction.{{ZONE_NAME}}\",\n                \"http\": {\n                    \"enabled\": true,\n                    \"port\": 80\n                },\n                \"https\": {\n                    \"enabled\": false,\n                    \"port\": 443,\n                    \"tls\": {\n                        \"certificate_id\": \"\"\n                    }\n                },\n                \"waf_regions\": {\n                    \"aws\": {\n                        \"us-east-1\": {\n                            \"endpoint\": {\n                                \"http\": {\n                                    \"port\": 80,\n                                    \"enabled\": true\n                                },\n                                \"ips\": [\n                                    \"18.232.64.254\"\n                                ]\n                            }\n                        }\n                    }\n                }\n            },\n            \"policy\": {\n                \"encoding\": \"utf-8\",\n                \"threat_campaigns\": {\n                    \"enabled\": true,\n                    \"enforcement_mode\": \"monitoring\"\n                },\n                \"compliance_enforcement\": {\n                    \"data_guard\": {\n                        \"enabled\": true,\n                        \"cc\": true,\n                        \"ssn\": true\n                    },\n                    \"sensitive_parameters\": {\n                        \"enabled\": true,\n                        \"parameters\": [\n                            \"cc_id\",\n                            \"creditcard\",\n                            \"passwd\",\n                            \"password\"\n                        ],\n                        \"xml_attributes\": [],\n                        \"xml_elements\": []\n                    }\n                },\n                \"high_risk_attack_mitigation\": {\n                    \"enabled\": true,\n                    \"enforcement_mode\": \"monitoring\",\n                    \"signature_enforcement\": {\n                        \"enabled\": true\n                    },\n                    \"allowed_methods\": {\n                        \"enabled\": true,\n                        \"methods\": [\n                            {\n                                \"name\": \"GET\"\n                            },\n                            {\n                                \"name\": \"POST\"\n                            },\n                            {\n                                \"name\": \"HEAD\"\n                            }\n                        ]\n                    },\n                    \"disallowed_file_types\": {\n                        \"enabled\": true,\n                        \"file_types\": [\n                            \"back\",\n                            \"bat\",\n                            \"bck\",\n                            \"bin\",\n                            \"cfg\",\n                            \"cmd\",\n                            \"com\",\n                            \"config\",\n                            \"dat\",\n                            \"dll\",\n                            \"eml\",\n                            \"exe\",\n                            \"exe1\",\n                            \"exe_renamed\",\n                            \"hta\",\n                            \"htr\",\n                            \"htw\",\n                            \"ida\",\n                            \"idc\",\n                            \"idq\",\n                            \"ini\",\n                            \"old\",\n                            \"sav\",\n                            \"save\"\n                        ]\n                    },\n                    \"api_compliance_enforcement\": {\n                        \"enabled\": true\n                    },\n                    \"http_compliance_enforcement\": {\n                        \"enabled\": true\n                    },\n                    \"websocket_compliance_enforcement\": {\n                        \"enabled\": true\n                    },\n                    \"geolocation_enforcement\": {\n                        \"disallowed_country_codes\": [\n                            \"CU\",\n                            \"IR\",\n                            \"KP\",\n                            \"LY\",\n                            \"SD\",\n                            \"SY\"\n                        ],\n                        \"enabled\": true\n                    },\n                    \"ip_enforcement\": {\n                        \"enabled\": true,\n                        \"ips\": []\n                    }\n                },\n                \"malicious_ip_enforcement\": {\n                    \"enabled\": true,\n                    \"enforcement_mode\": \"monitoring\",\n                    \"ip_categories\": [\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"mobile_threats\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"cloud_services\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"anonymous_proxies\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"phishing_proxies\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"infected_sources\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"denial_of_service\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"scanners\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"bot_nets\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"web_attacks\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"windows_exploits\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"spam_sources\"\n                        }\n                    ]\n                }\n            }\n        }\n    },\n    \"service_type\": \"waf\"\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"account_id\": \"{{ACCOUNT_ID}}\",\n    \"catalog_id\": \"{{WAF_CATALOG_ID}}\",\n    \"service_instance_name\": \"na2-auction.{{ZONE_NAME}}\",\n    \"configuration\": {\n        \"waf_service\": {\n            \"application\": {\n                \"description\": \"na2-auction.{{ZONE_NAME}}\",\n                \"fqdn\": \"na2-auction.{{ZONE_NAME}}\",\n                \"http\": {\n                    \"enabled\": true,\n                    \"port\": 80\n                },\n                \"https\": {\n                    \"enabled\": false,\n                    \"port\": 443,\n                    \"tls\": {\n                        \"certificate_id\": \"\"\n                    }\n                },\n                \"waf_regions\": {\n                    \"aws\": {\n                        \"us-east-1\": {\n                            \"endpoint\": {\n                                \"http\": {\n                                    \"port\": 80,\n                                    \"enabled\": true\n                                },\n                                \"ips\": [\n                                    \"18.232.64.254\"\n                                ]\n                            }\n                        }\n                    }\n                }\n            },\n            \"policy\": {\n                \"encoding\": \"utf-8\",\n                \"threat_campaigns\": {\n                    \"enabled\": true,\n                    \"enforcement_mode\": \"monitoring\"\n                },\n                \"compliance_enforcement\": {\n                    \"data_guard\": {\n                        \"enabled\": true,\n                        \"cc\": true,\n                        \"ssn\": true\n                    },\n                    \"sensitive_parameters\": {\n                        \"enabled\": true,\n                        \"parameters\": [\n                            \"cc_id\",\n                            \"creditcard\",\n                            \"passwd\",\n                            \"password\"\n                        ],\n                        \"xml_attributes\": [],\n                        \"xml_elements\": []\n                    }\n                },\n                \"high_risk_attack_mitigation\": {\n                    \"enabled\": true,\n                    \"enforcement_mode\": \"monitoring\",\n                    \"signature_enforcement\": {\n                        \"enabled\": true\n                    },\n                    \"allowed_methods\": {\n                        \"enabled\": true,\n                        \"methods\": [\n                            {\n                                \"name\": \"GET\"\n                            },\n                            {\n                                \"name\": \"POST\"\n                            },\n                            {\n                                \"name\": \"HEAD\"\n                            }\n                        ]\n                    },\n                    \"disallowed_file_types\": {\n                        \"enabled\": true,\n                        \"file_types\": [\n                            \"back\",\n                            \"bat\",\n                            \"bck\",\n                            \"bin\",\n                            \"cfg\",\n                            \"cmd\",\n                            \"com\",\n                            \"config\",\n                            \"dat\",\n                            \"dll\",\n                            \"eml\",\n                            \"exe\",\n                            \"exe1\",\n                            \"exe_renamed\",\n                            \"hta\",\n                            \"htr\",\n                            \"htw\",\n                            \"ida\",\n                            \"idc\",\n                            \"idq\",\n                            \"ini\",\n                            \"old\",\n                            \"sav\",\n                            \"save\"\n                        ]\n                    },\n                    \"api_compliance_enforcement\": {\n                        \"enabled\": true\n                    },\n                    \"http_compliance_enforcement\": {\n                        \"enabled\": true\n                    },\n                    \"websocket_compliance_enforcement\": {\n                        \"enabled\": true\n                    },\n                    \"geolocation_enforcement\": {\n                        \"disallowed_country_codes\": [\n                            \"CU\",\n                            \"IR\",\n                            \"KP\",\n                            \"LY\",\n                            \"SD\",\n                            \"SY\"\n                        ],\n                        \"enabled\": true\n                    },\n                    \"ip_enforcement\": {\n                        \"enabled\": true,\n                        \"ips\": []\n                    }\n                },\n                \"malicious_ip_enforcement\": {\n                    \"enabled\": true,\n                    \"enforcement_mode\": \"monitoring\",\n                    \"ip_categories\": [\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"mobile_threats\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"cloud_services\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"anonymous_proxies\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"phishing_proxies\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"infected_sources\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"denial_of_service\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"scanners\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"bot_nets\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"web_attacks\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"windows_exploits\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"spam_sources\"\n                        }\n                    ]\n                }\n            }\n        }\n    },\n    \"service_type\": \"waf\"\n}"
 						},
 						"url": {
 							"raw": "https://{{HOSTNAME}}/{{API_VERSION}}/svc-subscription/subscriptions",
@@ -1152,7 +991,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "93475f1c-21b4-4a1c-963f-524b238b0b17",
 								"exec": [
 									"pm.test(\"Set EAP variables\", function() {",
 									"    var jsonData = pm.response.json();",
@@ -1210,7 +1048,7 @@
 							{
 								"key": "Authorization",
 								"type": "text",
-								"value": "Bearer {{LIMITED_ACCESS_TOKEN}}"
+								"value": "Bearer {{ACCESS_TOKEN}}"
 							},
 							{
 								"key": "Labid",
@@ -1249,7 +1087,7 @@
 							{
 								"key": "Authorization",
 								"type": "text",
-								"value": "Bearer {{LIMITED_ACCESS_TOKEN}}"
+								"value": "Bearer {{ACCESS_TOKEN}}"
 							},
 							{
 								"key": "Labid",
@@ -1318,7 +1156,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f968f6e9-9c3e-4270-8056-03ed73295967",
 								"exec": [
 									""
 								],
@@ -1343,10 +1180,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"account_id\": \"{{ACCOUNT_ID}}\",\n    \"catalog_id\": \"{{WAF_CATALOG_ID}}\",\n    \"service_instance_name\": \"na2-auction.{{ZONE_NAME}}\",\n    \"configuration\": {\n        \"waf_service\": {\n            \"application\": {\n                \"description\": \"na2-auction.{{ZONE_NAME}}\",\n                \"fqdn\": \"na2-auction.{{ZONE_NAME}}\",\n                \"http\": {\n                    \"enabled\": true,\n                    \"port\": 80\n                },\n                \"https\": {\n                    \"enabled\": false,\n                    \"port\": 443,\n                    \"tls\": {\n                        \"certificate_id\": \"\"\n                    }\n                },\n                \"waf_regions\": {\n                    \"aws\": {\n                        \"us-east-1\": {\n                            \"endpoint\": {\n                                \"http\": {\n                                    \"port\": 80,\n                                    \"enabled\": true\n                                },\n                                \"ips\": [\n                                    \"18.232.64.254\"\n                                ]\n                            }\n                        }\n                    }\n                }\n            },\n            \"policy\": {\n                \"encoding\": \"utf-8\",\n                \"threat_campaigns\": {\n                    \"enabled\": true,\n                    \"enforcement_mode\": \"blocking\"\n                },\n                \"compliance_enforcement\": {\n                    \"data_guard\": {\n                        \"enabled\": true,\n                        \"cc\": true,\n                        \"ssn\": true\n                    },\n                    \"sensitive_parameters\": {\n                        \"enabled\": true,\n                        \"parameters\": [\n                            \"cc_id\",\n                            \"creditcard\",\n                            \"passwd\",\n                            \"password\"\n                        ],\n                        \"xml_attributes\": [],\n                        \"xml_elements\": []\n                    }\n                },\n                \"high_risk_attack_mitigation\": {\n                    \"enabled\": true,\n                    \"enforcement_mode\": \"blocking\",\n                    \"signature_enforcement\": {\n                        \"enabled\": true\n                    },\n                    \"allowed_methods\": {\n                        \"enabled\": true,\n                        \"methods\": [\n                            {\n                                \"name\": \"GET\"\n                            },\n                            {\n                                \"name\": \"POST\"\n                            },\n                            {\n                                \"name\": \"HEAD\"\n                            }\n                        ]\n                    },\n                    \"disallowed_file_types\": {\n                        \"enabled\": true,\n                        \"file_types\": [\n                            \"back\",\n                            \"bat\",\n                            \"bck\",\n                            \"bin\",\n                            \"cfg\",\n                            \"cmd\",\n                            \"com\",\n                            \"config\",\n                            \"dat\",\n                            \"dll\",\n                            \"eml\",\n                            \"exe\",\n                            \"exe1\",\n                            \"exe_renamed\",\n                            \"hta\",\n                            \"htr\",\n                            \"htw\",\n                            \"ida\",\n                            \"idc\",\n                            \"idq\",\n                            \"ini\",\n                            \"old\",\n                            \"sav\",\n                            \"save\"\n                        ]\n                    },\n                    \"api_compliance_enforcement\": {\n                        \"enabled\": true\n                    },\n                    \"http_compliance_enforcement\": {\n                        \"enabled\": true\n                    },\n                    \"websocket_compliance_enforcement\": {\n                        \"enabled\": true\n                    },\n                    \"geolocation_enforcement\": {\n                        \"disallowed_country_codes\": [\n                            \"CU\",\n                            \"IR\",\n                            \"KP\",\n                            \"LY\",\n                            \"SD\",\n                            \"SY\"\n                        ],\n                        \"enabled\": true\n                    },\n                    \"ip_enforcement\": {\n                        \"enabled\": true,\n                        \"ips\": []\n                    }\n                },\n                \"malicious_ip_enforcement\": {\n                    \"enabled\": true,\n                    \"enforcement_mode\": \"blocking\",\n                    \"ip_categories\": [\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"mobile_threats\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"cloud_services\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"anonymous_proxies\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"phishing_proxies\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"infected_sources\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"denial_of_service\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"scanners\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"bot_nets\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"web_attacks\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"windows_exploits\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"spam_sources\"\n                        }\n                    ]\n                }\n            }\n        },\n        \"update_comment\": \"update monitor to block\"\n    },\n    \"service_type\": \"waf\"\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"account_id\": \"{{ACCOUNT_ID}}\",\n    \"catalog_id\": \"{{WAF_CATALOG_ID}}\",\n    \"service_instance_name\": \"na2-auction.{{ZONE_NAME}}\",\n    \"configuration\": {\n        \"waf_service\": {\n            \"application\": {\n                \"description\": \"na2-auction.{{ZONE_NAME}}\",\n                \"fqdn\": \"na2-auction.{{ZONE_NAME}}\",\n                \"http\": {\n                    \"enabled\": true,\n                    \"port\": 80\n                },\n                \"https\": {\n                    \"enabled\": false,\n                    \"port\": 443,\n                    \"tls\": {\n                        \"certificate_id\": \"\"\n                    }\n                },\n                \"waf_regions\": {\n                    \"aws\": {\n                        \"us-east-1\": {\n                            \"endpoint\": {\n                                \"http\": {\n                                    \"port\": 80,\n                                    \"enabled\": true\n                                },\n                                \"ips\": [\n                                    \"18.232.64.254\"\n                                ]\n                            }\n                        }\n                    }\n                }\n            },\n            \"policy\": {\n                \"encoding\": \"utf-8\",\n                \"threat_campaigns\": {\n                    \"enabled\": true,\n                    \"enforcement_mode\": \"blocking\"\n                },\n                \"compliance_enforcement\": {\n                    \"data_guard\": {\n                        \"enabled\": true,\n                        \"cc\": true,\n                        \"ssn\": true\n                    },\n                    \"sensitive_parameters\": {\n                        \"enabled\": true,\n                        \"parameters\": [\n                            \"cc_id\",\n                            \"creditcard\",\n                            \"passwd\",\n                            \"password\"\n                        ],\n                        \"xml_attributes\": [],\n                        \"xml_elements\": []\n                    }\n                },\n                \"high_risk_attack_mitigation\": {\n                    \"enabled\": true,\n                    \"enforcement_mode\": \"blocking\",\n                    \"signature_enforcement\": {\n                        \"enabled\": true\n                    },\n                    \"allowed_methods\": {\n                        \"enabled\": true,\n                        \"methods\": [\n                            {\n                                \"name\": \"GET\"\n                            },\n                            {\n                                \"name\": \"POST\"\n                            },\n                            {\n                                \"name\": \"HEAD\"\n                            }\n                        ]\n                    },\n                    \"disallowed_file_types\": {\n                        \"enabled\": true,\n                        \"file_types\": [\n                            \"back\",\n                            \"bat\",\n                            \"bck\",\n                            \"bin\",\n                            \"cfg\",\n                            \"cmd\",\n                            \"com\",\n                            \"config\",\n                            \"dat\",\n                            \"dll\",\n                            \"eml\",\n                            \"exe\",\n                            \"exe1\",\n                            \"exe_renamed\",\n                            \"hta\",\n                            \"htr\",\n                            \"htw\",\n                            \"ida\",\n                            \"idc\",\n                            \"idq\",\n                            \"ini\",\n                            \"old\",\n                            \"sav\",\n                            \"save\"\n                        ]\n                    },\n                    \"api_compliance_enforcement\": {\n                        \"enabled\": true\n                    },\n                    \"http_compliance_enforcement\": {\n                        \"enabled\": true\n                    },\n                    \"websocket_compliance_enforcement\": {\n                        \"enabled\": true\n                    },\n                    \"geolocation_enforcement\": {\n                        \"disallowed_country_codes\": [\n                            \"CU\",\n                            \"IR\",\n                            \"KP\",\n                            \"LY\",\n                            \"SD\",\n                            \"SY\"\n                        ],\n                        \"enabled\": true\n                    },\n                    \"ip_enforcement\": {\n                        \"enabled\": true,\n                        \"ips\": []\n                    }\n                },\n                \"malicious_ip_enforcement\": {\n                    \"enabled\": true,\n                    \"enforcement_mode\": \"blocking\",\n                    \"ip_categories\": [\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"mobile_threats\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"cloud_services\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"anonymous_proxies\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"phishing_proxies\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"infected_sources\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"denial_of_service\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"scanners\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"bot_nets\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"web_attacks\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"windows_exploits\"\n                        },\n                        {\n                            \"block\": true,\n                            \"log\": true,\n                            \"name\": \"spam_sources\"\n                        }\n                    ]\n                }\n            }\n        },\n        \"update_comment\": \"update monitor to block\"\n    },\n    \"service_type\": \"waf\"\n}"
 						},
 						"url": {
 							"raw": "https://{{HOSTNAME}}/{{API_VERSION}}/svc-subscription/subscriptions/{{WAF_SUBSCRIPTION_ID}}",
@@ -1477,8 +1311,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Clean Up",
@@ -1489,7 +1322,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ffd947bf-adbd-40a2-8242-57f348b0ef24",
 								"exec": [
 									""
 								],
@@ -1539,7 +1371,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "cb36bc77-d7ab-4fc4-a354-2543d8c89d82",
 								"exec": [
 									""
 								],
@@ -1589,7 +1420,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "9d88a7cc-2291-4109-bb0f-cea695beda98",
 								"exec": [
 									""
 								],
@@ -1640,7 +1470,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer {{LIMITED_ACCESS_TOKEN}}",
+								"value": "Bearer {{ACCESS_TOKEN}}",
 								"type": "text"
 							},
 							{
@@ -1664,63 +1494,11 @@
 					"response": []
 				},
 				{
-					"name": "Limited User Logout",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "8867dc80-ea01-4c82-9798-9eff8f0f071e",
-								"exec": [
-									"pm.test(\"Reset token variable\", function() {",
-									"    pm.environment.set(\"LIMITED_ACCESS_TOKEN\", \"\");",
-									"})",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"access_token\": \"{{LIMITED_ACCESS_TOKEN}}\"\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://{{HOSTNAME}}/{{API_VERSION}}/svc-auth/logout",
-							"protocol": "https",
-							"host": [
-								"{{HOSTNAME}}"
-							],
-							"path": [
-								"{{API_VERSION}}",
-								"svc-auth",
-								"logout"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Logout",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "3b899fab-6990-48f1-bc23-0a47ee471bfa",
 								"exec": [
 									"pm.test(\"Reset token variable\", function() {",
 									"    pm.environment.set(\"ACCESS_TOKEN\", \"\");",
@@ -1765,9 +1543,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
